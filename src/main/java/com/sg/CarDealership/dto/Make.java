@@ -12,7 +12,7 @@ public class Make {
     private String name;
     private String email;
     private Date date;
-    private Car car;
+    private int carId;
 
     public int getId() {
         return id;
@@ -46,12 +46,12 @@ public class Make {
         this.date = date;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(int carId) {
+        this.carId = carId;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Make {
         hash = 23 * hash + Objects.hashCode(this.name);
         hash = 23 * hash + Objects.hashCode(this.email);
         hash = 23 * hash + Objects.hashCode(this.date);
-        hash = 23 * hash + Objects.hashCode(this.car);
+        hash = 23 * hash + Objects.hashCode(this.carId);
         return hash;
     }
 
@@ -89,7 +89,7 @@ public class Make {
         if (!Objects.equals(this.date, other.date)) {
             return false;
         }
-        return Objects.equals(this.car, other.car);
+        return Objects.equals(this.carId, other.carId);
     }
     
 }

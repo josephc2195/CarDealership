@@ -1,6 +1,7 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.Make;
+import java.util.List;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
@@ -8,5 +9,7 @@ import com.sg.CarDealership.dto.Make;
  * Design of an interface defining ... on month day, year
  */
 public interface MakeDao {
-     public Make addMakes(String makes);
+     public Make addMake(Make make);
+     
+     public List<Make> getAllMakes();
 }

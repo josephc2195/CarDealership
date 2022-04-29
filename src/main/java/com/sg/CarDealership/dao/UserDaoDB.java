@@ -1,6 +1,8 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * @author Weston Gavin, Joseph Chica && Ronald Gedeon; 
@@ -9,14 +11,24 @@ import com.sg.CarDealership.dto.User;
  */
 public class UserDaoDB implements UserDao{
 
+    @Autowired
+    JdbcTemplate jdbc;
+    
     @Override
     public User addUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String CMD = "INSERT INTO user(role, username, pw) "
+                + "VALUES(?, ?, ?)";
+        jdbc.update(CMD, user.getRole(), user.getUsername(), user.getPw());
+        int currId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        user.setId(currId);
+        return user;
     }
 
     @Override
     public void updateUser(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String CMD = "UPDATE user SET role = ?, username = ?, " 
+                + "pw = ? WHERE id = ?";
+        jdbc.update(CMD, user.getRole(), user.getUsername(), user.getPw(), user.getId());
     }
 
 }
