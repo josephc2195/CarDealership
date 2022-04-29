@@ -10,9 +10,10 @@ import java.util.List;
  */
 public interface CarDao {
     public List<Car> getAllCars();
-    public List<Car> getCarByGeneric(String generic); // generic = makes or model
-    public List<Car>getCarByYears(int min, int max);
-    public List<Car>getCarByPrices(int min, int max);
+//    public List<Car> getCarByMake(String make);
+//    public List<Car> getCarByModel(String model);
+//    public List<Car>getCarByYears(int min, int max);
+//    public List<Car>getCarByPrices(int min, int max);
     public Car addCar(Car car);
-    public void updateCar(Car car);
+    public boolean updateCar(Car car);
 }
