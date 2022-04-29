@@ -69,7 +69,7 @@ create table sales (
 	constraint fk_car
 		foreign key(carId)
         references car(id),
-	constraint fk_customer
+	constraint fk_salesCustomer
 		foreign key(customerId)
         references customer(id)
 );
@@ -79,3 +79,4 @@ create table specials(
     title varchar(255) not null, 
     description varchar(255) not null
 );
+
