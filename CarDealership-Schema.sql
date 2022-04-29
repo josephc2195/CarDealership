@@ -9,9 +9,11 @@ create table car (
     make varchar(15) not null,
     model varchar(15) not null,
     type varchar(4) not null,
+    bodyStyle varchar(10) not null, 
+    interior varchar(15) not null,
     color varchar(15) not null,
     mileage int not null,
-    transmision varchar(10) not null,
+    transmission varchar(10) not null,
     vin char(17) not null,
     msrp decimal(7,2) not null,
     salesPrice decimal(7,2) not null,
@@ -79,4 +81,10 @@ create table specials(
     title varchar(255) not null, 
     description varchar(255) not null
 );
+
+insert into car(id, year, make, model, type, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, available) 
+values 
+(1, 2022, 'toyota', 'camry', 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1),
+(2, 2022, 'ford', 'bronco', 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1),
+(3, 2019, 'honda', 'pilot', 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1);
 

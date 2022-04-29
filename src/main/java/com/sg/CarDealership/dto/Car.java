@@ -9,5 +9,7 @@ package com.sg.CarDealership.dto;
  * @author chica
  */
 public class Car {
+    private int id, year, 
+    
     
 }
