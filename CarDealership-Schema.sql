@@ -5,8 +5,8 @@ use CarDealership;
 
 create table car (
 	id int not null AUTO_INCREMENT,
-	year int not null, 
-    type varchar(4) not null,
+	`year` int not null, 
+    `type` varchar(4) not null,
     bodyStyle varchar(10) not null, 
     interior varchar(15) not null,
     color varchar(15) not null,
@@ -15,7 +15,7 @@ create table car (
     vin char(17) not null,
     msrp decimal(7,2) not null,
     salesPrice decimal(7,2) not null,
-    description varchar(255),
+    `description` varchar(255),
     picture varchar(25),
     available tinyint not null, 
     constraint pk_car 
@@ -24,7 +24,7 @@ create table car (
 
 create table make (
 	id int not null AUTO_INCREMENT,
-	name varchar(15) not null,
+	`name` varchar(15) not null,
     email varchar(15) not null,
     dateAdded date not null,
     carId int,
@@ -37,7 +37,7 @@ create table make (
 
 create table model(
 	id int not null AUTO_INCREMENT, 
-    name varchar(15) not null,
+    `name` varchar(15) not null,
     email varchar(15) not null, 
     dateAdded date not null,
     makeId int not null,
@@ -50,7 +50,7 @@ create table model(
 
 create table user (
 	id int not null AUTO_INCREMENT,
-    role varchar(20) not null,
+    `role` varchar(20) not null,
     username varchar(20) not null,
     pw varchar(255) not null,
     constraint pk_user
@@ -103,7 +103,7 @@ create table sales (
 create table specials(
 	id int not null AUTO_INCREMENT,
     title varchar(255) not null, 
-    description varchar(255) not null,
+    `description` varchar(255) not null,
     constraint pk_specials
 		primary key(id)
 );
