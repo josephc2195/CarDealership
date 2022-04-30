@@ -8,12 +8,13 @@ import java.util.Objects;
  * Class for domain object Car of the App
  */
 public class Car {
-    private int id, year, mileage;
+    private int id, year, mileage, featured;
     private String type, bodyStyle, interior, color, transmission, vin, description, picture;
     private double msrp, salesPrice;
     private int available;
     private int featured;
     private Make make;
+    
 
     
 }
