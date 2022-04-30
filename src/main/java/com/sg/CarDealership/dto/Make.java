@@ -1,5 +1,5 @@
 package com.sg.CarDealership.dto;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -11,8 +11,7 @@ public class Make {
     private int id;
     private String name;
     private String email;
-    private Date date;
-    private int carId;
+    private LocalDate date;
 
     public int getId() {
         return id;
@@ -38,30 +37,21 @@ public class Make {
         this.email = email;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public int getCarId() {
-        return carId;
-    }
-
-    public void setCarId(int carId) {
-        this.carId = carId;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.id;
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + Objects.hashCode(this.email);
-        hash = 23 * hash + Objects.hashCode(this.date);
-        hash = 23 * hash + Objects.hashCode(this.carId);
+        int hash = 5;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 37 * hash + Objects.hashCode(this.email);
+        hash = 37 * hash + Objects.hashCode(this.date);
         return hash;
     }
 
@@ -86,10 +76,7 @@ public class Make {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.date, other.date)) {
-            return false;
-        }
-        return Objects.equals(this.carId, other.carId);
+        return Objects.equals(this.date, other.date);
     }
-    
+
 }

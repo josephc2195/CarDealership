@@ -1,5 +1,6 @@
 package com.sg.CarDealership.dao;
 
+import java.util.List;
 import com.sg.CarDealership.dto.Model;
 
 /**
@@ -9,4 +10,5 @@ import com.sg.CarDealership.dto.Model;
  */
 public interface ModelDao {
      public Model addModel(Model model);
+     public List<Model> getAllModels();
 }

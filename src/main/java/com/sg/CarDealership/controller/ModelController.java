@@ -1,28 +1,37 @@
 package com.sg.CarDealership.controller;
 
 import com.sg.CarDealership.dao.ModelDao;
+import com.sg.CarDealership.dto.Car;
 import com.sg.CarDealership.dto.Model;
-import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
  * gitRepo: https://github.com/gedegithub/C223-JavaDev.git 
  * Class controller with endpoints for Model
  */
+@RestController
+@RequestMapping("/guildcars.com")
 public class ModelController {
     @Autowired
     ModelDao modelDao;
     
-    @PostMapping("addModel") 
-    public String addModel(String name, String email, Date dateAdded, int carId) {
-        Model model = new Model();
-        model.setName(name);
-        model.setDate(dateAdded);
-        model.setEmail(email);
-        model.setId(carId);
-        return "redirect:/models";
+    @PostMapping("/admin/addModel") 
+    @ResponseStatus(HttpStatus.CREATED)
+    public Model createModel(@RequestBody Model model) {
+        return modelDao.addModel(model);
     }
 
+    @GetMapping("/admin/models")
+    public List<Model> readAllModels() {
+        return modelDao.getAllModels();
+    }
 }

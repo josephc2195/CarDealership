@@ -10,6 +10,5 @@ import java.util.List;
  */
 public interface MakeDao {
      public Make addMake(Make make);
-     
      public List<Make> getAllMakes();
 }

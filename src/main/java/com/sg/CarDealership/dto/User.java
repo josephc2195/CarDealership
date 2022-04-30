@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class User {
     private int id;
-    private String role, username, pw;
+    private String role, username, password;
 
     public int getId() {
         return id;
@@ -30,13 +30,29 @@ public class User {
         this.role = role;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 19 * hash + this.id;
         hash = 19 * hash + Objects.hashCode(this.role);
         hash = 19 * hash + Objects.hashCode(this.username);
-        hash = 19 * hash + Objects.hashCode(this.pw);
+        hash = 19 * hash + Objects.hashCode(this.password);
         return hash;
     }
 
@@ -61,22 +77,6 @@ public class User {
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        return Objects.equals(this.pw, other.pw);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
+        return Objects.equals(this.password, other.password);
     }
 }

@@ -15,7 +15,7 @@ public class UserController {
         User user = new User();
         user.setRole(role);
         user.setUsername(username);
-        user.setPw(pw);
+        user.setPassword(pw);
         
         
         return "redirect:/users";

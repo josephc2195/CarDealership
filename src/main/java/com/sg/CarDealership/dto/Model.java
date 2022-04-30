@@ -1,5 +1,5 @@
 package com.sg.CarDealership.dto;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -11,7 +11,7 @@ public class Model {
     private int id;
     private String name;
     private String email;
-    private Date date;
+    private LocalDate date;
     private Make make;
 
     public int getId() {
@@ -38,11 +38,11 @@ public class Model {
         this.email = email;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

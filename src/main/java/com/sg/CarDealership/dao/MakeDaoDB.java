@@ -22,35 +22,33 @@ public class MakeDaoDB implements MakeDao{
     
     @Override
     public List<Make> getAllMakes() {
-        final String CMD = "SELECT * FROM make";
-        return jdbc.query(CMD, new MakeMapper());
+        final String SELECT_ALL_MAKES = "SELECT * FROM make";
+        return jdbc.query(SELECT_ALL_MAKES, new MakeMapper());
     }
     
     @Override
     public Make addMake(Make make) {
-        final String CMD = "INSERT INTO make(`name`, email, dateAdded, carId) " 
-                + "VALUES(?,?,?,?,?)";
-        jdbc.update(CMD, make.getName(), make.getEmail(), make.getDate(), make.getCarId());
-        int currId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        make.setId(currId);
+        final String INSERT_MAKE = "INSERT INTO make(name, email, dateAdded) " 
+                + "VALUES(?,?,?)";
+        jdbc.update(INSERT_MAKE, make.getName(), make.getEmail(), make.getDate());
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        make.setId(newId);
         return make;
     }
     
     public static final class MakeMapper implements RowMapper<Make> {
 
         @Override
-        public Make mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public Make mapRow(ResultSet rs, int index) throws SQLException {
             Make make = new Make();
             make.setId(rs.getInt("id"));
-            make.setDate(rs.getDate("date"));
-            make.setName(rs.getString("`name`"));
+            make.setName(rs.getString("name"));
             make.setEmail(rs.getString("email"));
-            make.setCarId(rs.getInt("carId"));
+            make.setDate(rs.getDate("dateAdded").toLocalDate());
             
             return make;
         }
         
     }
-
 
 }

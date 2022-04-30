@@ -12,6 +12,15 @@ public class Car {
     private String type, bodyStyle, interior, color, transmission, vin, description, picture;
     private double msrp, salesPrice;
     private int available;
+    private Make make;
+
+    public Make getMake() {
+        return make;
+    }
+
+    public void setMake(Make make) {
+        this.make = make;
+    }
 
     public int getId() {
         return id;
@@ -127,21 +136,22 @@ public class Car {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + this.id;
-        hash = 53 * hash + this.year;
-        hash = 53 * hash + this.mileage;
-        hash = 53 * hash + Objects.hashCode(this.type);
-        hash = 53 * hash + Objects.hashCode(this.bodyStyle);
-        hash = 53 * hash + Objects.hashCode(this.interior);
-        hash = 53 * hash + Objects.hashCode(this.color);
-        hash = 53 * hash + Objects.hashCode(this.transmission);
-        hash = 53 * hash + Objects.hashCode(this.vin);
-        hash = 53 * hash + Objects.hashCode(this.description);
-        hash = 53 * hash + Objects.hashCode(this.picture);
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.msrp) ^ (Double.doubleToLongBits(this.msrp) >>> 32));
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.salesPrice) ^ (Double.doubleToLongBits(this.salesPrice) >>> 32));
-        hash = 53 * hash + this.available;
+        int hash = 7;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + this.year;
+        hash = 41 * hash + this.mileage;
+        hash = 41 * hash + Objects.hashCode(this.type);
+        hash = 41 * hash + Objects.hashCode(this.bodyStyle);
+        hash = 41 * hash + Objects.hashCode(this.interior);
+        hash = 41 * hash + Objects.hashCode(this.color);
+        hash = 41 * hash + Objects.hashCode(this.transmission);
+        hash = 41 * hash + Objects.hashCode(this.vin);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.picture);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.msrp) ^ (Double.doubleToLongBits(this.msrp) >>> 32));
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.salesPrice) ^ (Double.doubleToLongBits(this.salesPrice) >>> 32));
+        hash = 41 * hash + this.available;
+        hash = 41 * hash + Objects.hashCode(this.make);
         return hash;
     }
 
@@ -196,7 +206,10 @@ public class Car {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        return Objects.equals(this.picture, other.picture);
+        if (!Objects.equals(this.picture, other.picture)) {
+            return false;
+        }
+        return Objects.equals(this.make, other.make);
     }
-    
+
 }

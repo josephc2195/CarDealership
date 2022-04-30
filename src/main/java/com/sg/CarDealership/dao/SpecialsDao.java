@@ -1,6 +1,7 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.Specials;
+import java.util.List;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
@@ -9,4 +10,5 @@ import com.sg.CarDealership.dto.Specials;
  */
 public interface SpecialsDao {
     public Specials addSpecial(Specials special);
+    public List<Specials> getAllSpecials();
 }

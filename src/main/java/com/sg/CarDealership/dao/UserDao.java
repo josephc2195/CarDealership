@@ -1,5 +1,6 @@
 package com.sg.CarDealership.dao;
 
+import java.util.List;
 import com.sg.CarDealership.dto.User;
 
 /**
@@ -9,6 +10,7 @@ import com.sg.CarDealership.dto.User;
  */
 public interface UserDao {
     public User addUser(User user);
+    public List<User> getAllUsers();
     public void updateUser(User user);
 
 }

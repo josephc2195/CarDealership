@@ -1,12 +1,14 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.Car;
+import com.sg.CarDealership.dto.Make;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import com.sg.CarDealership.dao.MakeDaoDB.MakeMapper;
 import org.springframework.stereotype.Repository;
 /**
  * @author Weston Gavin, Joseph Chica && Ronald Gedeon; 
@@ -23,9 +25,20 @@ public class CarDaoDB implements CarDao {
     public List<Car> getAllCars() {
         final String SELECT_ALL_CARS = "SELECT * FROM car";
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
+        
+        for(Car car: cars){
+            getMakeForCar(car);
+        }
         return cars;
     }
 
+    // fetch and populate the Make field in Car class
+    private Make getMakeForCar(Car car) {
+        final String SELECT_MAKE_FOR_CAR = "SELECT m.* FROM make m "
+                + "JOIN car c ON m.id = c.makeId WHERE c.id = ?";
+        return jdbc.queryForObject(SELECT_MAKE_FOR_CAR, new MakeMapper(), car.getId());
+    }
+    
     /*
     @Override
     public List<Car> getCarByMake(String make){

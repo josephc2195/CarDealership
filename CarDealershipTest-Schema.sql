@@ -3,6 +3,15 @@ create database CarDealershipTest;
  
 use CarDealershipTest;
 
+create table make (
+	id int not null AUTO_INCREMENT,
+	`name` varchar(30) not null,
+    email varchar(50) not null,
+    dateAdded datetime not null,
+    constraint pk_make 
+		primary key(id)
+);
+
 create table car (
 	id int not null AUTO_INCREMENT,
 	`year` int not null, 
@@ -18,32 +27,23 @@ create table car (
     `description` varchar(255),
     picture varchar(25),
     available tinyint not null, 
+    makeId int not null,
     constraint pk_car 
-		primary key(id)
-);
-
-create table make (
-	id int not null AUTO_INCREMENT,
-	`name` varchar(15) not null,
-    email varchar(15) not null,
-    dateAdded date not null,
-    carId int,
-    constraint pk_make 
 		primary key(id),
-	constraint fk_make
-		foreign key(carId)
-        references car(id)
+    constraint fk_carmake
+		foreign key(makeId)
+        references make(id)    
 );
 
 create table model(
 	id int not null AUTO_INCREMENT, 
-    `name` varchar(15) not null,
-    email varchar(15) not null, 
-    dateAdded date not null,
+    `name` varchar(30) not null,
+    email varchar(50) not null, 
+    dateAdded datetime not null,
     makeId int not null,
     constraint pk_model
 		primary key(id),
-	constraint fk_modelMake
+	constraint fk_modelmake
 		foreign key(makeId)
         references make(id)
 );
@@ -51,8 +51,8 @@ create table model(
 create table user (
 	id int not null AUTO_INCREMENT,
     `role` varchar(20) not null,
-    username varchar(20) not null,
-    pw varchar(255) not null,
+    username varchar(30) not null,
+    `password` varchar(255) not null,
     constraint pk_user
 		primary key(id)
 );
@@ -66,10 +66,10 @@ create table customer (
 
 create table person (
 	id int not null AUTO_INCREMENT,
-    firstName varchar(20) not null,
-    lastName varchar(20) not null,
-    email varchar(20),
-	phone varchar(12) not null,
+    firstName varchar(30) not null,
+    lastName varchar(50) not null,
+    email varchar(50),
+	phone varchar(15) not null,
     address varchar(100),
     userId int,
     customerId int, 
@@ -86,13 +86,13 @@ create table person (
 create table sales (
 	id int not null AUTO_INCREMENT, 
     purchasePrice decimal(7,2) not null,
-    purchaseType varchar(20) not null,
+    purchaseType varchar(25) not null,
+    purchaseDate datetime not null,
     carId int not null,
     customerId int not null,
-    purchaseDate date not null,
     constraint pk_sales
 		primary key(id),
-	constraint fk_car
+	constraint fk_carsales
 		foreign key(carId)
         references car(id),
 	constraint fk_salesCustomer
@@ -102,15 +102,27 @@ create table sales (
 
 create table specials(
 	id int not null AUTO_INCREMENT,
-    title varchar(255) not null, 
+    title varchar(30) not null, 
     `description` varchar(255) not null,
     constraint pk_specials
 		primary key(id)
 );
 
-insert into car(id, year, type, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, available) 
+insert into make(id, `name`, email, dateAdded) 
 values 
-(1, 2022, 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1),
-(2, 2022, 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1),
-(3, 2019, 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1);
+(1, "Mazda", 'default@init.com', now()),
+(2, "Subaru", 'init@default.com', now()),
+(3, "Audi", 'default@finit.com', now());
+
+insert into model(id, `name`, email, dateAdded, makeId) 
+values 
+(1, "CX5", 'default@init.com', now(), 1),
+(2, "Outback", 'init@default.com', now(), 2),
+(3, "Q5", 'default@finit.com', now(), 3);
+
+insert into car(id, `year`, `type`, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, available, makeId) 
+values 
+(1, 2022, 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1, 3),
+(2, 2022, 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1, 2),
+(3, 2019, 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1, 1);
 
