@@ -1,9 +1,7 @@
 package com.sg.CarDealership.controller;
 
 import com.sg.CarDealership.dao.ModelDao;
-import com.sg.CarDealership.dto.Car;
 import com.sg.CarDealership.dto.Model;
-import com.sg.CarDealership.models.MakeIdModel;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/guildcars.com")
 public class ModelController {
+    
     @Autowired
     ModelDao modelDao;
     

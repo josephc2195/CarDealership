@@ -25,7 +25,7 @@ public class MakeDaoDB implements MakeDao{
     public Make getMakeById(int makeId) {
         final String SELECT_MAKEID = "SELECT * FROM make WHERE id = ?";
 
-        // make id not exist
+        // make id does not exist
         try {
             return jdbc.queryForObject(SELECT_MAKEID, new MakeMapper(), makeId);
         } catch (EmptyResultDataAccessException ex) {
@@ -43,7 +43,10 @@ public class MakeDaoDB implements MakeDao{
     public Make addMake(Make make) {
         final String INSERT_MAKE = "INSERT INTO make(name, email, dateAdded) " 
                 + "VALUES(?,?,?)";
-        jdbc.update(INSERT_MAKE, make.getName(), make.getEmail(), make.getDate());
+        jdbc.update(INSERT_MAKE, 
+                make.getName(), 
+                make.getEmail(), 
+                make.getDate());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         make.setId(newId);
         return make;

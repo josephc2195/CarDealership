@@ -34,16 +34,17 @@ public class ModelDaoDB implements ModelDao{
             throw new InvalidRequestParametersException("Invalid parameters - Missing  makeId");
 */         
         // check if make id exists.
-        Make make = makeDao.getMakeById(makeId);
-        if (make == null) {
-            System.out.println("Make doesn't exists"); // throw new MakeNotFoundException(mameId);
-        }
+//        Make make = makeDao.getMakeById(makeId);
+//        
+//        if (make != null) {
+//            model.setMake(make); // else throw new MakeNotFoundException(mameId);
+//        }
 
         jdbc.update(INSERT_MODEL, 
                 model.getName(), 
                 model.getEmail(), 
                 model.getDate(), 
-                model.getMake().getId());
+                makeId);
         int currId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         model.setId(currId);
         
@@ -56,7 +57,9 @@ public class ModelDaoDB implements ModelDao{
 
         // model id not exist
         try {
-            return jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
+            Model model = jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
+            getMakeForModel(model); // populate make field in model class
+            return model;
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -67,17 +70,17 @@ public class ModelDaoDB implements ModelDao{
         final String SELECT_ALL_MODELS = "SELECT * FROM model";
         List<Model> models = jdbc.query(SELECT_ALL_MODELS, new ModelMapper());
         
-        for(Model model: models){
-            getMakeForModel(model);
+        for(Model singleModel: models){
+            getMakeForModel(singleModel); // populate make field in model class
         }
         return models;
     }
 
-    // fetch and populate the Make field in Car class
+    // fetch and populate the Make field in Model class
     private Make getMakeForModel(Model model) {
-        final String SELECT_MAKE_FOR_CAR = "SELECT m.* FROM make m "
-                + "JOIN model mo ON m.id = mo.makeId WHERE mo.id = ?";
-        return jdbc.queryForObject(SELECT_MAKE_FOR_CAR, new MakeMapper(), model.getId());
+        final String SELECT_MAKE_FOR_MODEL = "SELECT ma.* FROM make ma "
+                + "JOIN model mo ON ma.id = mo.makeId WHERE mo.id = ?";
+        return jdbc.queryForObject(SELECT_MAKE_FOR_MODEL, new MakeMapper(), model.getId());
     }
     
       public static final class ModelMapper implements RowMapper<Model> {

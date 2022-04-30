@@ -41,41 +41,7 @@ public class CarDaoDB implements CarDao {
                 + "JOIN car c ON mo.id = c.modelId WHERE c.id = ?";
         return jdbc.queryForObject(SELECT_MODEL_FOR_CAR, new ModelMapper(), car.getId());
     }
-    
-    /*
-    @Override
-    public List<Car> getCarByMake(String make){
-       try {
-            final String SELECT_CAR_BY_MAKE = "SELECT * FROM car WHERE make = ?";
-            List<Car> cars = jdbc.query(SELECT_CAR_BY_MAKE, new CarMapper(), make);
-            return cars;
-        } catch (EmptyResultDataAccessException ex) {
-            return null;
-        } 
-    }
-    
-    @Override
-    public List<Car> getCarByModel(String model){
-        try {
-            final String SELECT_CAR_BY_MODEL = "SELECT * FROM car WHERE model = ?";
-            List<Car> cars = jdbc.query(SELECT_CAR_BY_MODEL, new CarMapper(), model);
-            return cars;
-        } catch (EmptyResultDataAccessException ex) {
-            return null;
-        } 
-    }
-
-    @Override
-    public List<Car> getCarByYears(int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Car> getCarByPrices(int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-     */
+   
     @Override
     public Car addCar(int modelId, Car car) {
         final String INSERT_CAR = "INSERT INTO car(year, type, bodyStyle, interior, "
