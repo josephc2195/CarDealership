@@ -94,7 +94,6 @@ public class ModelDaoDB implements ModelDao{
             model.setDate(rs.getDate("dateAdded").toLocalDate());
             
             return model;
-        }
-        
+        }   
     }
 }
