@@ -14,6 +14,6 @@ public interface CarDao {
 //    public List<Car> getCarByModel(String model);
 //    public List<Car>getCarByYears(int min, int max);
 //    public List<Car>getCarByPrices(int min, int max);
-    public Car addCar(Car car);
+    public Car addCar(int modelId, Car car);
     public boolean updateCar(Car car);
 }

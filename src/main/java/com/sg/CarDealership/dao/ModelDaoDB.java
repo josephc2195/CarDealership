@@ -7,6 +7,7 @@ import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -29,7 +30,7 @@ public class ModelDaoDB implements ModelDao{
     public Model addModel(int makeId, Model model) { // id: is makeId
         final String INSERT_MODEL = "INSERT INTO model(name, email, dateAdded, makeId) " +
                 "VALUES(?,?,?,?)";
-/*       if (id == 0) {
+/*       if (makeId == 0) {
             throw new InvalidRequestParametersException("Invalid parameters - Missing  makeId");
 */         
         // check if make id exists.
@@ -47,6 +48,18 @@ public class ModelDaoDB implements ModelDao{
         model.setId(currId);
         
         return model;
+    }
+    
+    @Override
+    public Model getModelById(int modelId) {
+        final String SELECT_MODELID = "SELECT * FROM model WHERE id = ?";
+
+        // model id not exist
+        try {
+            return jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
     }
 
     @Override

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.sg.CarDealership.dto;
 
 import java.util.Objects;
@@ -13,6 +9,7 @@ import java.util.Objects;
 public class User {
     private int id;
     private String role, username, password;
+    private Person person;
 
     public int getId() {
         return id;
@@ -45,14 +42,23 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + this.id;
-        hash = 19 * hash + Objects.hashCode(this.role);
-        hash = 19 * hash + Objects.hashCode(this.username);
-        hash = 19 * hash + Objects.hashCode(this.password);
+        int hash = 3;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.role);
+        hash = 59 * hash + Objects.hashCode(this.username);
+        hash = 59 * hash + Objects.hashCode(this.password);
+        hash = 59 * hash + Objects.hashCode(this.person);
         return hash;
     }
 
@@ -77,6 +83,10 @@ public class User {
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        return Objects.equals(this.password, other.password);
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        return Objects.equals(this.person, other.person);
     }
+    
 }

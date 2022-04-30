@@ -40,6 +40,7 @@ create table car (
     `description` varchar(255),
     picture varchar(25),
     available tinyint not null, 
+    featured tinyint not null,
     modelId int not null,
     constraint pk_car 
 		primary key(id),
@@ -120,11 +121,11 @@ values
 (2, 'Outback', 'init@default.com', now(), 2),
 (3, 'Q5', 'default@finit.com', now(), 3);
 
-insert into car(id, `year`, `type`, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, available, modelId) 
+insert into car(id, `year`, `type`, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, available, featured, modelId) 
 values 
-(1, 2022, 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1, 3),
-(2, 2022, 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1, 2),
-(3, 2019, 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1, 1);
+(1, 2022, 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1, 1, 3),
+(2, 2022, 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1, 0, 2),
+(3, 2019, 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1, 0, 1);
 
 insert into person(id, firstName, lastName, email, phone, address) 
 values 

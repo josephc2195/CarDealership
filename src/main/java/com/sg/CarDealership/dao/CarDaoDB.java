@@ -1,14 +1,14 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.Car;
-import com.sg.CarDealership.dto.Make;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import com.sg.CarDealership.dao.MakeDaoDB.MakeMapper;
+import com.sg.CarDealership.dao.ModelDaoDB.ModelMapper;
+import com.sg.CarDealership.dto.Model;
 import org.springframework.stereotype.Repository;
 /**
  * @author Weston Gavin, Joseph Chica && Ronald Gedeon; 
@@ -20,6 +20,9 @@ public class CarDaoDB implements CarDao {
 
     @Autowired
     JdbcTemplate jdbc;
+    
+    @Autowired
+    ModelDao modelDao;
 
     @Override
     public List<Car> getAllCars() {
@@ -27,16 +30,16 @@ public class CarDaoDB implements CarDao {
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
         
         for(Car car: cars){
-            getMakeForCar(car);
+            getModelForCar(car);
         }
         return cars;
     }
 
     // fetch and populate the Make field in Car class
-    private Make getMakeForCar(Car car) {
-        final String SELECT_MAKE_FOR_CAR = "SELECT m.* FROM make m "
-                + "JOIN car c ON m.id = c.makeId WHERE c.id = ?";
-        return jdbc.queryForObject(SELECT_MAKE_FOR_CAR, new MakeMapper(), car.getId());
+    private Model getModelForCar(Car car) {
+        final String SELECT_MODEL_FOR_CAR = "SELECT m.* FROM model mo "
+                + "JOIN car c ON mo.id = c.modelId WHERE c.id = ?";
+        return jdbc.queryForObject(SELECT_MODEL_FOR_CAR, new ModelMapper(), car.getId());
     }
     
     /*
@@ -74,10 +77,20 @@ public class CarDaoDB implements CarDao {
 
      */
     @Override
-    public Car addCar(Car car) {
+    public Car addCar(int modelId, Car car) {
         final String INSERT_CAR = "INSERT INTO car(year, type, bodyStyle, interior, "
                 + "color, mileage, transmission, vin, msrp, salesPrice, description, "
                 + "picture, available) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        
+        /*       if (modelId == 0) {
+            throw new InvalidRequestParametersException("Invalid parameters - Missing  modelId");
+*/         
+        // check if model id exists.
+        Model model = modelDao.getModelById(modelId);
+        if (model == null) {
+            System.out.println("Make doesn't exists"); // throw new MakeNotFoundException(modelId);
+        }
+        
         jdbc.update(INSERT_CAR,
                 car.getYear(),
                 car.getType(),
@@ -118,7 +131,7 @@ public class CarDaoDB implements CarDao {
                 car.getDescription(),
                 car.getPicture(),
                 car.getAvailable(),
-                car.getFeatured()
+                car.getFeatured(),
                 car.getId()) > 0;
     }
 

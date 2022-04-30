@@ -11,4 +11,5 @@ import com.sg.CarDealership.dto.Model;
 public interface ModelDao {
      public Model addModel(int makeId, Model model);
      public List<Model> getAllModels();
+     public Model getModelById(int modelId);
 }

@@ -38,8 +38,8 @@ public class CarController {
     
     @PostMapping("/admin/addvehicle")
     @ResponseStatus(HttpStatus.CREATED)
-    public Car createCar(@RequestBody Car car) {//model binding in spring mvc where todo object is injected in the request body
-        return carDao.addCar(car);
+    public Car createCar(@PathVariable int modelId, @RequestBody Car car) {//model binding in spring mvc where todo object is injected in the request body
+        return carDao.addCar(modelId, car);
     }
     
     /* We use 2 params to follow the convention that every URL that operates on an existing resource uses the form "admin/editvehicle/{id}"*/
