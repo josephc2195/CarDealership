@@ -91,7 +91,8 @@ public class CarDaoDB implements CarDao {
                 car.getSalesPrice(),
                 car.getDescription(),
                 car.getPicture(),
-                car.getAvailable());
+                car.getAvailable(),
+                car.getFeatured());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         car.setId(newId);
@@ -102,7 +103,7 @@ public class CarDaoDB implements CarDao {
     public boolean updateCar(Car car) {
         final String UPDATE_CAR = "UPDATE car SET year = ?, type = ?, bodyStyle = ?, interior = ?, "
                 + "color = ?, mileage = ?, transmission = ?, vin = ?, msrp = ?, salesPrice = ?, description = ?, "
-                + "picture = ?, available = ? WHERE id = ?";
+                + "picture = ?, available = ?, featured = ? WHERE id = ?";
         return jdbc.update(UPDATE_CAR,
                 car.getYear(),
                 car.getType(),
@@ -117,6 +118,7 @@ public class CarDaoDB implements CarDao {
                 car.getDescription(),
                 car.getPicture(),
                 car.getAvailable(),
+                car.getFeatured()
                 car.getId()) > 0;
     }
 
@@ -140,6 +142,7 @@ public class CarDaoDB implements CarDao {
             car.setMsrp(rs.getDouble("msrp"));
             car.setSalesPrice(rs.getDouble("salesPrice"));
             car.setAvailable(rs.getInt("available"));
+            car.setFeatured(rs.getInt("featured"));
             return car;
         }
     }

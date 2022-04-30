@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/guildcars.com")
-public class MakesController {
+public class MakeController {
     Set<ConstraintViolation<Make>> violations = new HashSet<>();
     
     @Autowired 
@@ -36,7 +36,7 @@ public class MakesController {
         return makeDao.getAllMakes();
     }
 
-    @PostMapping("/admin/addMake")
+    @PostMapping("/admin/addmake")
     @ResponseStatus(HttpStatus.CREATED)
     public Make createMake(@RequestBody Make make) {
         return makeDao.addMake(make);

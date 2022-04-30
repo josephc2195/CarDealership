@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,18 @@ public class MakeDaoDB implements MakeDao{
 
     @Autowired
     JdbcTemplate jdbc;
+    
+    @Override
+    public Make getMakeById(int makeId) {
+        final String SELECT_MAKEID = "SELECT * FROM make WHERE id = ?";
+
+        // make id not exist
+        try {
+            return jdbc.queryForObject(SELECT_MAKEID, new MakeMapper(), makeId);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
     
     @Override
     public List<Make> getAllMakes() {

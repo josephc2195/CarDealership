@@ -7,12 +7,14 @@ import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
  * gitRepo: https://github.com/gedegithub/C223-JavaDev.git 
  * Design of a class ... on month day, year
  */
+@Repository
 public class SpecialsDaoDB implements SpecialsDao{
     
     @Autowired
@@ -22,7 +24,9 @@ public class SpecialsDaoDB implements SpecialsDao{
     public Specials addSpecial(Specials special) {
         final String INSERT_SPECIALS = "INSERT INTO specials(title, description) " + 
                 "VALUES(?, ?)";
-        jdbc.update(INSERT_SPECIALS, special.getTitle(), special.getDescription());
+        jdbc.update(INSERT_SPECIALS, 
+                special.getTitle(), 
+                special.getDescription());
         
         int currId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         special.setId(currId);

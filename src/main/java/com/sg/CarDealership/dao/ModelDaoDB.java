@@ -22,14 +22,30 @@ public class ModelDaoDB implements ModelDao{
     @Autowired
     JdbcTemplate jdbc;
 
+    @Autowired
+    MakeDao makeDao;
+    
     @Override
-    public Model addModel(Model model) {
-        final String CMD = "INSERT INTO model(`name`, email, date, make) " +
+    public Model addModel(int makeId, Model model) { // id: is makeId
+        final String INSERT_MODEL = "INSERT INTO model(name, email, dateAdded, makeId) " +
                 "VALUES(?,?,?,?)";
-        
-        jdbc.update(CMD, model.getName(), model.getEmail(), model.getDate(), model.getMake());
+/*       if (id == 0) {
+            throw new InvalidRequestParametersException("Invalid parameters - Missing  makeId");
+*/         
+        // check if make id exists.
+        Make make = makeDao.getMakeById(makeId);
+        if (make == null) {
+            System.out.println("Make doesn't exists"); // throw new MakeNotFoundException(mameId);
+        }
+
+        jdbc.update(INSERT_MODEL, 
+                model.getName(), 
+                model.getEmail(), 
+                model.getDate(), 
+                model.getMake().getId());
         int currId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         model.setId(currId);
+        
         return model;
     }
 

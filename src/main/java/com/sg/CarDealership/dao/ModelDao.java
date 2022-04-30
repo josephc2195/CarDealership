@@ -9,6 +9,6 @@ import com.sg.CarDealership.dto.Model;
  * Design of an interface defining ... on month day, year
  */
 public interface ModelDao {
-     public Model addModel(Model model);
+     public Model addModel(int makeId, Model model);
      public List<Model> getAllModels();
 }
