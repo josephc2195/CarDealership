@@ -8,11 +8,12 @@ import java.util.Objects;
  * Class for domain object Car of the App
  */
 public class Car {
-    private int id, year, mileage;
+    private int id, year, mileage, featured;
     private String type, bodyStyle, interior, color, transmission, vin, description, picture;
     private double msrp, salesPrice;
     private int available;
     private Make make;
+    
 
     public Make getMake() {
         return make;
@@ -133,6 +134,15 @@ public class Car {
     public void setAvailable(int available) {
         this.available = available;
     }
+
+    public int isFeatured() {
+        return featured;
+    }
+
+    public void setFeatured(int featured) {
+        this.featured = featured;
+    }
+    
 
     @Override
     public int hashCode() {
