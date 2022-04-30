@@ -28,6 +28,7 @@ create table car (
     picture varchar(25),
     available tinyint not null, 
     makeId int not null,
+    featured boolean,
     constraint pk_car 
 		primary key(id),
     constraint fk_carmake
@@ -125,4 +126,3 @@ values
 (1, 2022, 'new', 'sedan', 'dark gray', 'blue', 23, 'auto', 'xbtznda8qbt7bg1p5', 25395.00, 23000.00, 1, 3),
 (2, 2022, 'new', 'suv', 'black', 'navy', 67, 'auto', '7fpdj8e8bz201y9jx', 30800.00, 30000.00, 1, 2),
 (3, 2019, 'used', 'suv', 'black', 'silver', 23000, 'auto', '6kezb8mzpq7h9jhpd', 18000.00, 17000.00, 1, 1);
-
