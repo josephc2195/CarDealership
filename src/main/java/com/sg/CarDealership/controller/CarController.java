@@ -36,17 +36,17 @@ public class CarController {
         return carDao.getAllCars();
     }
     
-    @PostMapping("/admin/addvehicle")
+    @PostMapping("/admin/addvehicle/{modelId}")
     @ResponseStatus(HttpStatus.CREATED)
     public Car createCar(@PathVariable int modelId, @RequestBody Car car) {//model binding in spring mvc where todo object is injected in the request body
         return carDao.addCar(modelId, car);
     }
     
     /* We use 2 params to follow the convention that every URL that operates on an existing resource uses the form "admin/editvehicle/{id}"*/
-    @PutMapping("admin/editvehicle/{id}")
-    public ResponseEntity updateCar(@PathVariable int id, @RequestBody Car car){//ResponseEntity is type-less
+    @PutMapping("admin/editvehicle/{modelId}")
+    public ResponseEntity updateCar(@PathVariable int modelId, @RequestBody Car car){//ResponseEntity is type-less
         ResponseEntity response = new ResponseEntity(HttpStatus.NOT_FOUND);
-        if (id != car.getId()) {
+        if (modelId != car.getId()) {
             response = new ResponseEntity(HttpStatus.UNPROCESSABLE_ENTITY);
         } else if (carDao.updateCar(car)) {
             response = new ResponseEntity(HttpStatus.ACCEPTED);

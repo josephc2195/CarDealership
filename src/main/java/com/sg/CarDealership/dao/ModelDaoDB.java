@@ -30,15 +30,6 @@ public class ModelDaoDB implements ModelDao{
     public Model addModel(int makeId, Model model) { // id: is makeId
         final String INSERT_MODEL = "INSERT INTO model(name, email, dateAdded, makeId) " +
                 "VALUES(?,?,?,?)";
-/*       if (makeId == 0) {
-            throw new InvalidRequestParametersException("Invalid parameters - Missing  makeId");
-*/         
-        // check if make id exists.
-//        Make make = makeDao.getMakeById(makeId);
-//        
-//        if (make != null) {
-//            model.setMake(make); // else throw new MakeNotFoundException(mameId);
-//        }
 
         jdbc.update(INSERT_MODEL, 
                 model.getName(), 
@@ -58,7 +49,7 @@ public class ModelDaoDB implements ModelDao{
         // model id not exist
         try {
             Model model = jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
-            getMakeForModel(model); // populate make field in model class
+            model.setMake(getMakeForModel(model)); // populate make field in model class
             return model;
         } catch (EmptyResultDataAccessException ex) {
             return null;
@@ -71,13 +62,13 @@ public class ModelDaoDB implements ModelDao{
         List<Model> models = jdbc.query(SELECT_ALL_MODELS, new ModelMapper());
         
         for(Model singleModel: models){
-            getMakeForModel(singleModel); // populate make field in model class
+            singleModel.setMake(getMakeForModel(singleModel)); // populate make field in model class
         }
         return models;
     }
 
     // fetch and populate the Make field in Model class
-    private Make getMakeForModel(Model model) {
+    public Make getMakeForModel(Model model) {
         final String SELECT_MAKE_FOR_MODEL = "SELECT ma.* FROM make ma "
                 + "JOIN model mo ON ma.id = mo.makeId WHERE mo.id = ?";
         return jdbc.queryForObject(SELECT_MAKE_FOR_MODEL, new MakeMapper(), model.getId());

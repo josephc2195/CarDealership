@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.sg.CarDealership.dao.ModelDaoDB.ModelMapper;
 import com.sg.CarDealership.dto.Model;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 /**
  * @author Weston Gavin, Joseph Chica && Ronald Gedeon; 
@@ -22,7 +23,23 @@ public class CarDaoDB implements CarDao {
     JdbcTemplate jdbc;
     
     @Autowired
-    ModelDao modelDao;
+    ModelDaoDB modelDao;
+    
+    @Override
+    public Car getCarById(int carId) {
+        final String SELECT_CARID = "SELECT * FROM car WHERE id = ?";
+
+        // car id not exist
+        try {
+            Car car = jdbc.queryForObject(SELECT_CARID, new CarMapper(), carId);
+            Model model = getModelForCar(car);
+            car.setModel(model); // populate model field in Car class
+            model.setMake(modelDao.getMakeForModel(model));
+            return car;
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
 
     @Override
     public List<Car> getAllCars() {
@@ -30,14 +47,17 @@ public class CarDaoDB implements CarDao {
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
         
         for(Car car: cars){
-            getModelForCar(car);
+            Model model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+            
         }
         return cars;
     }
 
     // fetch and populate the Make field in Car class
-    private Model getModelForCar(Car car) {
-        final String SELECT_MODEL_FOR_CAR = "SELECT m.* FROM model mo "
+    public Model getModelForCar(Car car) {
+        final String SELECT_MODEL_FOR_CAR = "SELECT mo.* FROM model mo "
                 + "JOIN car c ON mo.id = c.modelId WHERE c.id = ?";
         return jdbc.queryForObject(SELECT_MODEL_FOR_CAR, new ModelMapper(), car.getId());
     }
@@ -46,16 +66,16 @@ public class CarDaoDB implements CarDao {
     public Car addCar(int modelId, Car car) {
         final String INSERT_CAR = "INSERT INTO car(year, type, bodyStyle, interior, "
                 + "color, mileage, transmission, vin, msrp, salesPrice, description, "
-                + "picture, available) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?);";
+                + "picture, available, featured, modelId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
         
         /*       if (modelId == 0) {
             throw new InvalidRequestParametersException("Invalid parameters - Missing  modelId");
 */         
         // check if model id exists.
-        Model model = modelDao.getModelById(modelId);
-        if (model == null) {
-            System.out.println("Make doesn't exists"); // throw new MakeNotFoundException(modelId);
-        }
+//        Model model = modelDao.getModelById(modelId);
+//        if (model == null) {
+//            System.out.println("Make doesn't exists"); // throw new MakeNotFoundException(modelId);
+//        }
         
         jdbc.update(INSERT_CAR,
                 car.getYear(),
@@ -71,7 +91,8 @@ public class CarDaoDB implements CarDao {
                 car.getDescription(),
                 car.getPicture(),
                 car.getAvailable(),
-                car.getFeatured());
+                car.getFeatured(),
+                modelId);
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         car.setId(newId);
@@ -109,17 +130,17 @@ public class CarDaoDB implements CarDao {
             Car car = new Car();
             car.setId(rs.getInt("id"));
             car.setYear(rs.getInt("year"));
-            car.setMileage(rs.getInt("mileage"));
             car.setType(rs.getString("type"));
             car.setBodyStyle(rs.getString("bodyStyle"));
             car.setInterior(rs.getString("interior"));
             car.setColor(rs.getString("color"));
+            car.setMileage(rs.getInt("mileage"));
             car.setTransmission(rs.getString("transmission"));
             car.setVin(rs.getString("vin"));
-            car.setDescription(rs.getString("description"));
-            car.setPicture(rs.getString("picture"));
             car.setMsrp(rs.getDouble("msrp"));
             car.setSalesPrice(rs.getDouble("salesPrice"));
+            car.setDescription(rs.getString("description"));
+            car.setPicture(rs.getString("picture"));
             car.setAvailable(rs.getInt("available"));
             car.setFeatured(rs.getInt("featured"));
             return car;

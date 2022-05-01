@@ -9,6 +9,7 @@ import java.util.List;
  * Interface with all mandatory behavior methods available for CarDao
  */
 public interface CarDao {
+    public Car getCarById(int carId);
     public List<Car> getAllCars();
 //    public List<Car> getCarByMake(String make);
 //    public List<Car> getCarByModel(String model);

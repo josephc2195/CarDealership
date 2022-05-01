@@ -9,8 +9,8 @@ import com.sg.CarDealership.dto.User;
  * Interface with all mandatory behavior methods available for UserDao
  */
 public interface UserDao {
-    public User addUser(User user);
+    public User addUser(int personId, User user);
     public List<User> getAllUsers();
-    public void updateUser(User user);
+    public boolean updateUser(User user);
 
 }
