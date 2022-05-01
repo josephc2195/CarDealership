@@ -30,14 +30,14 @@ public class CarDaoDB implements CarDao {
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
         
         for(Car car: cars){
-            getModelForCar(car);
+            car.setModel(getModelForCar(car));
         }
         return cars;
     }
 
     // fetch and populate the Make field in Car class
     private Model getModelForCar(Car car) {
-        final String SELECT_MODEL_FOR_CAR = "SELECT m.* FROM model mo "
+        final String SELECT_MODEL_FOR_CAR = "SELECT mo.* FROM model mo "
                 + "JOIN car c ON mo.id = c.modelId WHERE c.id = ?";
         return jdbc.queryForObject(SELECT_MODEL_FOR_CAR, new ModelMapper(), car.getId());
     }
