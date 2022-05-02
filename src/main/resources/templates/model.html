@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+
+    <title>Guild Cars!</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="../images/brandlogo.png" width="40" height="30" alt="" />
+        <div>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href=""
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Inventory
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="">New</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="">Used</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Specials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Sales</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Admin</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <br />
+
+    <div class="container">
+      <div class="text-left"><h2>Model</h2></div>
+      <br />
+      <form class="form-inline" action="" method="">
+        <div class="form-group">
+          <label for="searchLabel">New Model </label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputSearch"
+            placeholder="Add new Make"
+            name="inputSearch"
+          />
+        </div>
+        <div class="form-group">
+          <label class="visually-hidden" for="inlineFormSelectPref"
+            >Makes</label
+          >
+          <select class="select">
+            <option value="1">Mazda</option>
+            <option value="2">Subaru</option>
+            <option value="3">Audi</option>
+            <option value="4">Ford</option>
+            <option value="5">Chevrolet</option>
+            <option value="6">Honda</option>
+            <option value="7">Mercedes</option>
+            <option value="8">Lincoln</option>
+            <option value="9">Mercury</option>
+            <option value="10">Dodge</option>
+            <option value="11">GMC</option>
+            <option value="12">Ram</option>
+            <option value="13">Aston</option>
+            <option value="14">Lamborghini</option>
+            <option value="15">Maserati</option>
+            <option value="16">Saab</option>
+            <option value="17">Saturn</option>
+            <option value="18">Tesla</option>
+            <option value="19">Lucid</option>
+            <option value="20">Rivian</option>
+            <option value="21">Nissan</option>
+            <option value="22">Toyota</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+    </div>
+    <br />
+    <div class="container">
+      <div id="modelTableDiv">
+        <table id="modelTable" class="table table-hover">
+          <thead>
+            <tr>
+              <th width="15%">Make</th>
+              <th width="15%">Model</th>
+              <th width="30%">Date Added</th>
+              <th width="40%">User</th>
+            </tr>
+          </thead>
+          <!-- we will add data rows dynamically to the tbody -->
+          <tbody id="modelRows"></tbody>
+        </table>
+      </div>
+    </div>
+    <!-- End main body -->
+
+    <!-- Optional JavaScript -->
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../scripts/guildcars.js"></script>
+  </body>
+</html>
