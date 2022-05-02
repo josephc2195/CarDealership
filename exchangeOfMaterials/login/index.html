@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags & above tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- ** Bootstrap CSS ** -->
+    <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Bootstrap Login!</title>
+  </head>
+  <body class="signin-body">
+    <div class="container signin-container">
+      <div class="row">
+      <!-- col-8 in the middle and col s are evenly distribuited around -->
+        <div class="col"></div> <!-- just col-8 it's for all screen -->
+        <div class="col-sm-12 col-md-8"> <!-- now, small-12 & medium & above 8  -->
+          <div class="card signin-card">
+            <div class="card-body">
+              <img src="devImg.jpg" class="img-fluid signin-img">
+              <form class="signin-form"> <!-- rename the ids -->
+                <div class="form-group">
+                  <input type="email" class="form-control" id="emailInput" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="passwordInput" placeholder="Password">
+                </div>
+                <button type="button" class="btn signin-btn btn-lg">Sign In</button>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                  <label class="form-check-label" for="gridCheck">
+                    Remember Me <a href="#"> Need Help?</a>
+                  </label>
+                </div>
+                </form>
+            </div>
+          </div>
+          <a href="#" class="newAccount">Create New Account </a>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- To include as well in project as Bootstrap is downloaded into project -->
+    <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
