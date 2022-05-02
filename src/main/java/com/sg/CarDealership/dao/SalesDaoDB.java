@@ -4,7 +4,7 @@ import com.sg.CarDealership.dao.CarDaoDB.CarMapper;
 import com.sg.CarDealership.dao.CustomerDaoDB.CustomerMapper;
 import com.sg.CarDealership.dto.Car;
 import com.sg.CarDealership.dto.Customer;
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 import com.sg.CarDealership.dto.Person;
 import java.util.List;
 import java.sql.SQLException;
@@ -59,7 +59,7 @@ public class SalesDaoDB implements SalesDao {
         for(Sales sales: salesList){
             
             Car car = getCarForSales(sales);
-            Model model = carDaoDB.getModelForCar(car);
+            CarModel model = carDaoDB.getModelForCar(car);
             model.setMake(modelDaoDB.getMakeForModel(model));
             car.setModel(model); // populate model field in Car class
             sales.setCar(car); // populate car field in Sales class

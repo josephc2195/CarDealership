@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import com.sg.CarDealership.dao.ModelDaoDB.ModelMapper;
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 /**
@@ -32,7 +32,7 @@ public class CarDaoDB implements CarDao {
         // car id not exist
         try {
             Car car = jdbc.queryForObject(SELECT_CARID, new CarMapper(), carId);
-            Model model = getModelForCar(car);
+            CarModel model = getModelForCar(car);
             car.setModel(model); // populate model field in Car class
             model.setMake(modelDao.getMakeForModel(model));
             return car;
@@ -47,7 +47,7 @@ public class CarDaoDB implements CarDao {
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
         
         for(Car car: cars){
-            Model model = getModelForCar(car);
+            CarModel model = getModelForCar(car);
             model.setMake(modelDao.getMakeForModel(model));
             car.setModel(model); // populate model field in Car class
             
@@ -56,7 +56,7 @@ public class CarDaoDB implements CarDao {
     }
 
     // fetch and populate the Make field in Car class
-    public Model getModelForCar(Car car) {
+    public CarModel getModelForCar(Car car) {
         final String SELECT_MODEL_FOR_CAR = "SELECT mo.* FROM model mo "
                 + "JOIN car c ON mo.id = c.modelId WHERE c.id = ?";
         return jdbc.queryForObject(SELECT_MODEL_FOR_CAR, new ModelMapper(), car.getId());

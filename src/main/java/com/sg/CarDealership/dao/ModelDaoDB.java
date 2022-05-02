@@ -2,7 +2,7 @@ package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dao.MakeDaoDB.MakeMapper;
 import com.sg.CarDealership.dto.Make;
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class ModelDaoDB implements ModelDao{
     MakeDao makeDao;
     
     @Override
-    public Model addModel(int makeId, Model model) { // id: is makeId
+    public CarModel addModel(int makeId, CarModel model) { // id: is makeId
         final String INSERT_MODEL = "INSERT INTO model(name, email, dateAdded, makeId) " +
                 "VALUES(?,?,?,?)";
 
@@ -43,12 +43,12 @@ public class ModelDaoDB implements ModelDao{
     }
     
     @Override
-    public Model getModelById(int modelId) {
+    public CarModel getModelById(int modelId) {
         final String SELECT_MODELID = "SELECT * FROM model WHERE id = ?";
 
         // model id not exist
         try {
-            Model model = jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
+            CarModel model = jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelId);
             model.setMake(getMakeForModel(model)); // populate make field in model class
             return model;
         } catch (EmptyResultDataAccessException ex) {
@@ -57,28 +57,28 @@ public class ModelDaoDB implements ModelDao{
     }
 
     @Override
-    public List<Model> getAllModels() {
+    public List<CarModel> getAllModels() {
         final String SELECT_ALL_MODELS = "SELECT * FROM model";
-        List<Model> models = jdbc.query(SELECT_ALL_MODELS, new ModelMapper());
+        List<CarModel> models = jdbc.query(SELECT_ALL_MODELS, new ModelMapper());
         
-        for(Model singleModel: models){
+        for(CarModel singleModel: models){
             singleModel.setMake(getMakeForModel(singleModel)); // populate make field in model class
         }
         return models;
     }
 
     // fetch and populate the Make field in Model class
-    public Make getMakeForModel(Model model) {
+    public Make getMakeForModel(CarModel model) {
         final String SELECT_MAKE_FOR_MODEL = "SELECT ma.* FROM make ma "
                 + "JOIN model mo ON ma.id = mo.makeId WHERE mo.id = ?";
         return jdbc.queryForObject(SELECT_MAKE_FOR_MODEL, new MakeMapper(), model.getId());
     }
     
-      public static final class ModelMapper implements RowMapper<Model> {
+      public static final class ModelMapper implements RowMapper<CarModel> {
 
         @Override
-        public Model mapRow(ResultSet rs, int index) throws SQLException {
-            Model model = new Model();
+        public CarModel mapRow(ResultSet rs, int index) throws SQLException {
+            CarModel model = new CarModel();
             model.setId(rs.getInt("id"));
             model.setName(rs.getString("name"));
             model.setEmail(rs.getString("email"));

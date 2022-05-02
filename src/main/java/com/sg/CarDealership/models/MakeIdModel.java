@@ -1,6 +1,6 @@
 package com.sg.CarDealership.models;
 
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
@@ -9,7 +9,7 @@ import com.sg.CarDealership.dto.Model;
  */
 public class MakeIdModel {
     private int makeId;
-    private Model model;
+    private CarModel model;
 
     public int getMakeId() {
         return makeId;
@@ -19,11 +19,11 @@ public class MakeIdModel {
         this.makeId = makeId;
     }
 
-    public Model getModel() {
+    public CarModel getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(CarModel model) {
         this.model = model;
     }
     

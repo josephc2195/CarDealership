@@ -1,53 +1,87 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                    <link rel="stylesheet" href="../styles/styles.css">
 
-    <title>Guild Cars!</title>
-  </head>
-  <body>
-    <!-- Main Body of Page -->
-    <div class="container" id="navBar">
-      <div class="row text-center border border-dark">
-        <div class="col-sm">
-          <a href="index">Home</a>
-        </div>
-        <div class="col-sm">
-          <a href="inventoryNew">New Inventory</a>
-        </div>
-        <div class="col-sm">
-          <a href="inventoryUsed">Used Inventory</a>
-        </div>
-        <div class="col-sm">
-          <a href="specials">Specials</a>
-        </div>
-        <div class="col-sm">
-          <a href="contact">Contact</a>
-        </div>
-      </div>
-    </div>
-    <div class="p-3 mb-2 bg-primary text-dark">
-      <div class="row m-4">
-        <h1>Big Huge Sale!!!</h1>
-      </div>
-    </div>
-    <div>
-      <h2>Featured Vehicles</h2>
-    </div>
-    <div class="container" id="featuredCars">
-    </div>
-      
-    <!-- End main body -->
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
-</html>
+                        <title>Guild Cars!</title>
+                        </head>
+                        <body>
+                            <!-- Main Body of Page -->
+                            <header>
+                                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                                    <img src="../images/brandlogo.png" width="40" height="30" alt="">
+                                        <div>
+                                            <ul class="navbar-nav mr-auto">
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                                                </li>
+
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Inventory
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="">New</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="">Used</a>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Specials</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Contact</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                </nav>
+                            </header>
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container">
+                                    <h1 class="display-4"> Specials!! </h1>
+                                    <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <div class="slide1"></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="slide2"></div>
+                                            </div>
+                                            <div class="item">
+                                                <div class="slide3"></div>
+                                            </div>
+                                        </div><!-- .carousel-inner --> 
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="car : ${cars}">
+                                        <td th:text="${car.year}">YearTest</td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- End main body -->
+
+                            <!-- Optional JavaScript -->
+
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+                            <script src="../scripts/guildcars.js">
+                                </body>
+                                        </html>
