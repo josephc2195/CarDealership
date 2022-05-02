@@ -7,7 +7,7 @@ import java.util.Objects;
  * gitRepo: https://github.com/gedegithub/C223-JavaDev.git 
  * Design of a class ... on month day, year
  */
-public class Model {
+public class CarModel {
     private int id;
     private String name;
     private String email;
@@ -76,7 +76,7 @@ public class Model {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Model other = (Model) obj;
+        final CarModel other = (CarModel) obj;
         if (this.id != other.id) {
             return false;
         }

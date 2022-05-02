@@ -1,7 +1,7 @@
 package com.sg.CarDealership.controller;
 
 import com.sg.CarDealership.dao.ModelDao;
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +27,12 @@ public class ModelController {
     
     @PostMapping("/admin/addmodel/{makeId}") 
     @ResponseStatus(HttpStatus.CREATED)
-    public Model createModel(@PathVariable int makeId, @RequestBody Model model) { // custom makeIdModel
+    public CarModel createModel(@PathVariable int makeId, @RequestBody CarModel model) { // custom makeIdModel
         return modelDao.addModel(makeId, model);
     }
 
     @GetMapping("/admin/models")
-    public List<Model> readAllModels() {
+    public List<CarModel> readAllModels() {
         return modelDao.getAllModels();
     }
 }
