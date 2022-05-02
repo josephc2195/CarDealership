@@ -1,0 +1,23 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 1, 2022, 6:44:04 AM
+    Author     : westo
+*/
+
+.slide1, .slide2, .slide3 {
+    min-height: 560px;
+    background-size: cover;
+    background-position: center center;
+}
+.slide1 {
+    background-image: url(http://placekitten.com/1000/300);
+}
+.slide2 {
+    background-image: url(http://placekitten.com/1100/300);
+}
+.slide3 {
+    background-image: url(http://placekitten.com/1200/300);
+}

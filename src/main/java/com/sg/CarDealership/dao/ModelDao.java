@@ -1,7 +1,7 @@
 package com.sg.CarDealership.dao;
 
 import java.util.List;
-import com.sg.CarDealership.dto.Model;
+import com.sg.CarDealership.dto.CarModel;
 
 /**
  * @author Ronald Gedeon; email: gedemarcel0002@hotmail.com;  
@@ -9,7 +9,7 @@ import com.sg.CarDealership.dto.Model;
  * Design of an interface defining ... on month day, year
  */
 public interface ModelDao {
-     public Model addModel(int makeId, Model model);
-     public List<Model> getAllModels();
-     public Model getModelById(int modelId);
+     public CarModel addModel(int makeId, CarModel model);
+     public List<CarModel> getAllModels();
+     public CarModel getModelById(int modelId);
 }

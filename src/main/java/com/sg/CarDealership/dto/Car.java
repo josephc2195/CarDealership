@@ -11,7 +11,7 @@ public class Car {
     private int id, year, mileage, available, featured;
     private String type, bodyStyle, interior, color, transmission, vin, description, picture;
     private double msrp, salesPrice;
-    private Model model;
+    private CarModel model;
 
     public int getId() {
         return id;
@@ -133,11 +133,11 @@ public class Car {
         this.available = available;
     }
 
-    public Model getModel() {
+    public CarModel getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(CarModel model) {
         this.model = model;
     }
 
