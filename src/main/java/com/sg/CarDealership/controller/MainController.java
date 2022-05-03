@@ -73,4 +73,60 @@ public class MainController {
         model.addAttribute("specials", specials);
         return "specialsDetails";
     }
+    @GetMapping("salesIndex")
+    public String getSalesIndex(){
+        return "salesIndex";
+    }
+    @GetMapping("addCar")
+    public String addCar(){
+        return "addCar";
+    }
+    @GetMapping("addUser")
+    public String addUser(){
+        return "addUser";
+    }
+    @GetMapping("car")
+    public String showCar(){
+        return "car";
+    }
+    @GetMapping("changePassword")
+    public String changePassword(){
+        return "changePassword";
+    }
+    @GetMapping("editCar")
+    public String editCar(){
+        return "editCar";
+    }
+    @GetMapping("editUser")
+    public String editUser(){
+        return "editUser";
+    }
+    @GetMapping("inventoryReport")
+    public String getInventoryReport(){
+        return "inventoryReport";
+    }
+    @GetMapping("make")
+    public String getMake(){
+        return "make";
+    }
+    @GetMapping("model")
+    public String getModel(){
+        return "model";
+    }
+    @GetMapping("report")
+    public String getReports(){
+        return "report";
+    }
+    @GetMapping("salesRecords")
+    public String getSalesRecords(){
+        return "salesRecords";
+    }
+    @GetMapping("salesReport")
+    public String getSalesReport(){
+        return "salesReport";
+    }
+    @GetMapping("users")
+    public String getUser(){
+        return "users";
+    }
 }
