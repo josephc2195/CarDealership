@@ -90,7 +90,15 @@
             </tr>
           </thead>
           <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="newInventoryRows"></tbody>
+          <tbody id="newInventoryRows">
+            <tr th:each="newCar : ${newCars}">
+              <td th:text="${newCar.year}">new car id</td>
+              <td th:text="${newCar.make}">new car make</td>
+              <td th:text="${newCar.model}">new car model</td>
+              <td th:text="${newCar.count}">new car count</td>
+              <td th:text="${newCar.stockValue}">new car stock value</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -109,7 +117,15 @@
             </tr>
           </thead>
           <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="usedInventoryRows"></tbody>
+          <tbody id="usedInventoryRows">
+            <tr th:each="usedCar : ${usedCars}">
+              <td th:text="${usedCar.year}">used car id</td>
+              <td th:text="${usedCar.make}">used car make</td>
+              <td th:text="${usedCar.model}">used car model</td>
+              <td th:text="${usedCar.count}">used car count</td>
+              <td th:text="${usedCar.stockValue}">used car stock value</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

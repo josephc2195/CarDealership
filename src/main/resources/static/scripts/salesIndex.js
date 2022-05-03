@@ -1,7 +1,7 @@
 $(document).ready(function () {
+  alert('page is loaded');
   $('#searchContainer').hide();
   loadCars();
-
   //addContact();
   //updateContact();
 });
@@ -9,7 +9,7 @@ $(document).ready(function () {
 // load function to GET data
 function loadCars() {
   //clearContactTable(); // clear the contacts table
-
+  $('#searchContainer').show();
   const carRows = $('#carRows');
 
   $.ajax({
@@ -21,7 +21,7 @@ function loadCars() {
     success: function (carArray) {
       $.each(carArray, function (index, car) {
         const name = car.year + ' ' + car.model.make.name + ' ' + car.model;
-        $('#searchContainer').show();
+
         const picture = car.picture;
         console.log(picture);
         const bodyStyle = car.bodyStyle;
@@ -35,24 +35,24 @@ function loadCars() {
 
         const carId = car.id;
 
-        // let row = '<tr>';
-        // row += '<td>' + name + '<br>' + picture + '</td>';
+        let row = '<tr>';
+        row += '<td>' + name + '<br>' + picture + '</td>';
 
-        // row += '<td>' + bodyStyle + '<br>' + trans + '<br>' + color + '</td>';
+        row += '<td>' + bodyStyle + '<br>' + trans + '<br>' + color + '</td>';
 
-        // row += '<td>' + interior + '<br>' + mileage + '<br>' + vin + '</td>';
-        // row +=
-        //   '<td>' +
-        //   salesPrice +
-        //   '<br>' +
-        //   msrp +
-        //   '<br>' +
-        //   '<button type="button" class="btn btn-danger" onclick="purchase(' +
-        //   carId +
-        //   ')">Purchase</button></td>';
-        // row += '</tr>';
+        row += '<td>' + interior + '<br>' + mileage + '<br>' + vin + '</td>';
+        row +=
+          '<td>' +
+          salesPrice +
+          '<br>' +
+          msrp +
+          '<br>' +
+          '<button type="button" class="btn btn-danger" onclick="purchase(' +
+          carId +
+          ')">Purchase</button></td>';
+        row += '</tr>';
 
-        // carRows.append(row);
+        carRows.append(row);
       });
     },
     error: function () {

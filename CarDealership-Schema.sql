@@ -251,7 +251,25 @@ values
 (10, 'Special #10', 'Unbeleavably amazing special'),
 (11, 'Special #11', 'Unbeleavably amazing special');
 
+-- Two views for aggregate queries for cars 
 
+create view aggregateNewCar as
+select year, make.name as make, model.name as model, count(car.id) as count, sum(car.msrp) as stockValue
+	from car 
+    join model on model.id = car.modelId
+    join make on make.id = model.makeId
+    where car.type = "new"
+    group by year, make, model
+    limit 20;
+    
+create view aggregateUsedCar as
+select year, make.name as make, model.name as model, count(car.id) as count, sum(car.msrp) as stockValue
+	from car 
+    join model on model.id = car.modelId
+    join make on make.id = model.makeId
+    where car.type = "used"
+    group by year, make, model
+    limit 20;    
 
 
 

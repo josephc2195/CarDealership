@@ -26,7 +26,12 @@
     <!-- Main Body of Page -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <img src="../images/brandlogo.png" width="40" height="30" alt="" />
+        <img
+          src="/images/brandlogo.png"
+          width="40"
+          height="30"
+          alt="Still broke"
+        />
         <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -48,22 +53,22 @@
                 Inventory
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="">New</a>
+                <a class="dropdown-item" href="inventoryNew">New</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="">Used</a>
+                <a class="dropdown-item" href="inventoryUsed">Used</a>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Specials</a>
+              <a class="nav-link" href="specials">Specials</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sales</a>
+              <a class="nav-link" href="salesIndex">Sales</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Admin</a>
+              <a class="nav-link" href="addCar">Admin</a>
             </li>
           </ul>
         </div>
@@ -115,8 +120,8 @@
     <br />
     <div class="container">
       <div class="text-left"><h4>Search Result</h4></div>
-      <div id="modelTableDiv">
-        <table id="modelTable" class="table table-hover">
+      <div id="salesReportTableDiv">
+        <table id="salesReportTable" class="table table-hover">
           <thead>
             <tr>
               <th width="10%">User</th>
@@ -125,7 +130,7 @@
             </tr>
           </thead>
           <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="modelRows"></tbody>
+          <tbody id="salesReportRows"></tbody>
         </table>
       </div>
     </div>
@@ -133,7 +138,7 @@
 
     <!-- Optional JavaScript -->
 
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
@@ -147,7 +152,7 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
-    ></script>
-    <script src="../scripts/guildcars.js"></script>
+    ></script> -->
+    <script src="../static/scripts/jquery-3.0.0.min.js"></script>
   </body>
 </html>
