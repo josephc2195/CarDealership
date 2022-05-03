@@ -11,6 +11,9 @@ import java.util.List;
 public interface CarDao {
     public Car getCarById(int carId);
     public List<Car> getAllCars();
+    public List<Car> getFeaturedCars();
+    public List<Car> getUsedCars();
+    public List<Car> getNewCars();
 //    public List<Car> getCarByMake(String make);
 //    public List<Car> getCarByModel(String model);
 //    public List<Car>getCarByYears(int min, int max);

@@ -14,7 +14,7 @@
                             <!-- Main Body of Page -->
                             <header>
                                 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                                    <img src="../images/brandlogo.png" width="40" height="30" alt="">
+                                    <img src="../img/brandlogo.png" width="40" height="30" alt="Still broke">
                                         <div>
                                             <ul class="navbar-nav mr-auto">
                                                 <li class="nav-item active">
@@ -26,55 +26,49 @@
                                                         Inventory
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        <a class="dropdown-item" href="">New</a>
+                                                        <a class="dropdown-item" href="inventoryNew">New</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="">Used</a>
+                                                        <a class="dropdown-item" href="inventoryUsed">Used</a>
                                                     </div>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Specials</a>
+                                                    <a class="nav-link" href="specials">Specials</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Contact</a>
+                                                    <a class="nav-link" href="contact">Contact</a>
                                                 </li>
                                             </ul>
 
                                         </div>
                                 </nav>
                             </header>
-                            <div class="jumbotron jumbotron-fluid">
-                                <div class="container">
-                                    <h1 class="display-4"> Specials!! </h1>
-                                    <div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-                                        <!-- Wrapper for slides -->
-                                        <div class="carousel-inner">
-                                            <div class="item active">
-                                                <div class="slide1"></div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="slide2"></div>
-                                            </div>
-                                            <div class="item">
-                                                <div class="slide3"></div>
-                                            </div>
-                                        </div><!-- .carousel-inner --> 
+                            
+                            <div id="carouselExampleControls" class="jumbotron jumbotron-fluid">
+
+                                <h1 style="text-align: center" class="display-4"> Specials!! </h1>
+                                <div  class="carousel slide" data-ride="carousel">
+                                    
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img style="justify-content: center" class="d-block w-10" src="../img/specials.png" alt="First slide"/>
+                                        </div>
+                                        <div th:each="car : ${cars}" class="carousel-item">
+                                            <img style="justify-content: center" class="d-block w-10" th:src="'../img/'+ ${car.picture} + '.jpg'" th:alt="${car.picture}"/>
+                                        </div>
+                                        
                                     </div>
+                                   
+                                </div>
+
+                            </div>
+                            <div class="container" style="Display: flex wrap">
+                                <div style="display: inline-block" th:each="car: ${cars}">
+                                    <img th:src="'../img/'+ ${car.picture} + '.jpg'" th:alt="${car.picture}"/>
+                                        <p th:text="${car.year} + ' ' + ${car.model.make.name} + ' ' + ${car.model.name}"></p>
+                                        <p th:text="'$' + ${car.salesPrice} + '0'"></p>
                                 </div>
                             </div>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Year</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="car : ${cars}">
-                                        <td th:text="${car.year}">YearTest</td>
-                                        
-                                    </tr>
-                                </tbody>
-                            </table>
+                            
                             <!-- End main body -->
 
                             <!-- Optional JavaScript -->
@@ -82,6 +76,6 @@
                             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
                             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-                            <script src="../scripts/guildcars.js">
-                                </body>
-                                        </html>
+                            <script src="../scripts/guildcars.js"></script>
+                        </body>
+                        </html>

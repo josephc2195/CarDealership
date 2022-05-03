@@ -6,6 +6,7 @@ import com.sg.CarDealership.dto.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,7 @@ public class CarController {
     public CarController(CarDao carDao) {
         this.carDao = carDao;
     }
-     
+    
     @GetMapping("/admin/vehicles")
     public List<Car> readAllCars() {
         return carDao.getAllCars();

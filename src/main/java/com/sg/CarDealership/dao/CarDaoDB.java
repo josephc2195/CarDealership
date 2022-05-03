@@ -54,7 +54,45 @@ public class CarDaoDB implements CarDao {
         }
         return cars;
     }
-
+    @Override
+    public List<Car> getFeaturedCars(){
+        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE featured = 1";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
+        
+        for(Car car: cars){
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+            
+        }
+        return cars;
+    }
+    @Override
+    public List<Car> getNewCars(){
+        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'new'";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
+        
+        for(Car car: cars){
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+            
+        }
+        return cars;
+    }
+    @Override
+    public List<Car> getUsedCars(){
+        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'used'";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
+        
+        for(Car car: cars){
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+            
+        }
+        return cars;
+    }
     // fetch and populate the Make field in Car class
     public CarModel getModelForCar(Car car) {
         final String SELECT_MODEL_FOR_CAR = "SELECT mo.* FROM model mo "
