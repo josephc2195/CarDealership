@@ -69,7 +69,7 @@ public class CarDaoDB implements CarDao {
     }
     @Override
     public List<Car> getNewCars(){
-        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'new'";
+        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'new' LIMIT 20";
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
         
         for(Car car: cars){

@@ -18,7 +18,7 @@
                                         <div>
                                             <ul class="navbar-nav mr-auto">
                                                 <li class="nav-item active">
-                                                    <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                                                    <a class="nav-link" href="index">Home</a>
                                                 </li>
 
                                                 <li class="nav-item dropdown">
@@ -35,14 +35,62 @@
                                                     <a class="nav-link" href="specials">Specials</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="contact">Contact</a>
+                                                    <a class="nav-link" href="contact">Contact<span class="sr-only">(current)</span></a>
                                                 </li>
                                             </ul>
 
                                         </div>
                                 </nav>
                             </header>
-                            
+                            <div class="container">
+        <h1>Contact Us</h1>
+        <form>
+            <div class="row">
+                <div class="col-4">
+                    <label for="contactName">Name</label>
+                    <input type="text" name="contactName" id="contactName" class="form-control" required/>
+                </div>
+                <div class="col-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d206098.55332579033!2d-91.45209620060848!3d79.84341437523808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4f9344da9515b951%3A0x4518d0c4d5c68876!2sNorth%20Pole!5e0!3m2!1sen!2sus!4v1651557112402!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4">
+                    <label for="email">E-mail</label>
+                    <input class="form-control" id="email" name="email" required/>
+                </div>
+                <div class="col-4">
+                    <p>North Pole Auto</p>
+                    <p>123 CandyCane Way</p>
+                    <p>Ice Nation</p>
+                    <br>
+                        <p>Sales: 111-111-1111 <br>
+                        Service: 111-111-1111</p>
+                </div>
+                
+            </div>
+            <br>
+            <div class="row">
+                
+                <div class="col-4">
+                    <label for="phone">Phone</label>
+                    <input class="form-control" id="phone" name="phone" required>
+                       
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <label for="message">Message</label>
+            </div>
+            <div class="row">
+                <textarea id="message" name="message" rows="5" cols="50"></textarea> 
+            </div>
+            <br>
+            
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
                             
                             
                             <!-- End main body -->

@@ -42,7 +42,15 @@
                                         </div>
                                 </nav>
                             </header>
-                            
+                            <h1>Specials!</h1>
+                            <div class="container-fluid">
+                                <div style="display: block" th:each="special : ${specials}">
+                                    <img style="display:inline-block" src="brandlogo.png"/>
+                                        <p th:text="${special.title}"></p>
+                                        <p th:text="${special.description}"></p>
+                                        
+                                </div>
+                            </div>
                             
                             
                             <!-- End main body -->

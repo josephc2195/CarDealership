@@ -69,8 +69,8 @@ public class MainController {
     }
     @GetMapping("specialsDetails")
     public String setSpecials(Model model){
-        List<Car> cars = carDao.getUsedCars();
-        model.addAttribute("cars", cars);
+        List<Specials> specials = specialDao.getAllSpecials();
+        model.addAttribute("specials", specials);
         return "specialsDetails";
     }
 }

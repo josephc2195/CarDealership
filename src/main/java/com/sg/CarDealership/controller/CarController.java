@@ -37,6 +37,7 @@ public class CarController {
         return carDao.getAllCars();
     }
     
+    
     @PostMapping("/admin/addvehicle/{modelId}")
     @ResponseStatus(HttpStatus.CREATED)
     public Car createCar(@PathVariable int modelId, @RequestBody Car car) {//model binding in spring mvc where todo object is injected in the request body

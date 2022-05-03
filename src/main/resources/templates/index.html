@@ -50,10 +50,14 @@
                                     
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
+                                            <a href="specials">
                                             <img style="justify-content: center" class="d-block w-10" src="../img/specials.png" alt="First slide"/>
+                                            </a>
                                         </div>
                                         <div th:each="car : ${cars}" class="carousel-item">
+                                            <a href="specials">
                                             <img style="justify-content: center" class="d-block w-10" th:src="'../img/'+ ${car.picture} + '.jpg'" th:alt="${car.picture}"/>
+                                            </a>
                                         </div>
                                         
                                     </div>
