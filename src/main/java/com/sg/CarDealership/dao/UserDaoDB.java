@@ -7,6 +7,7 @@ import java.util.List;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -57,6 +58,16 @@ public class UserDaoDB implements UserDao{
             user.setPerson(person); // populate person field in User class
         }
         return users;
+    }
+    
+    @Override
+    public User getUserById(int id) {
+        try {
+            final String CMD = "SELECT * FROM user WHERE id = ?";
+            return jdbc.queryForObject(CMD, new UserMapper(), id);
+        } catch(DataAccessException ex) {
+            return null;
+        }
     }
     
     // fetch and populate the Person field in User class

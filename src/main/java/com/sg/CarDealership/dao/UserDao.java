@@ -12,5 +12,6 @@ public interface UserDao {
     public User addUser(int personId, User user);
     public List<User> getAllUsers();
     public boolean updateUser(User user);
+    public User getUserById(int id);
 
 }
