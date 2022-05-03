@@ -67,7 +67,7 @@
                             </div>
                             <div class="container" style="Display: flex wrap">
                                 <div style="display: inline-block" th:each="car: ${cars}">
-                                    <img th:src="'../img/'+ ${car.picture} + '.jpg'" th:alt="${car.picture}"/>
+                                    <a th:href="@{carDetails(carId=${car.id})}"> <img th:src="'../img/'+ ${car.picture} + '.jpg'" th:alt="${car.picture}"/></a>
                                         <p th:text="${car.year} + ' ' + ${car.model.make.name} + ' ' + ${car.model.name}"></p>
                                         <p th:text="'$' + ${car.salesPrice} + '0'"></p>
                                 </div>
