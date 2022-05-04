@@ -1,16 +1,21 @@
 package com.sg.CarDealership.controller;
 
 import com.sg.CarDealership.dao.CarDao;
+import com.sg.CarDealership.dao.MakeDao;
+import com.sg.CarDealership.dao.ModelDao;
 import com.sg.CarDealership.dao.PersonDao;
 import com.sg.CarDealership.dao.SpecialsDao;
 import com.sg.CarDealership.dao.UserDao;
 import com.sg.CarDealership.dto.AggregateCar;
 import com.sg.CarDealership.dto.Car;
+import com.sg.CarDealership.dto.CarModel;
+import com.sg.CarDealership.dto.Make;
 import com.sg.CarDealership.dto.Person;
 import com.sg.CarDealership.dto.Specials;
 import com.sg.CarDealership.dto.UnsoldCar;
 import com.sg.CarDealership.dto.User;
 import java.util.List;
+import java.time.LocalDate;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,14 +33,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("guildcars.com/")
 public class MainController {
 
+    private String newMakeName;
     private final CarDao carDao;
     private final SpecialsDao specialDao;
     private final UserDao userDao;
     private final PersonDao personDao;
+    private final MakeDao makeDao;
+    private final ModelDao modelDao;
 
     @Autowired
-    public MainController(CarDao carDao, SpecialsDao specialDao, UserDao userDao, PersonDao personDao) {
+    public MainController(CarDao carDao, MakeDao makeDao, ModelDao modelDao, SpecialsDao specialDao, UserDao userDao, PersonDao personDao) {
         this.carDao = carDao;
+        this.makeDao = makeDao;
+        this.modelDao = modelDao;
         this.specialDao = specialDao;
         this.userDao = userDao;
         this.personDao = personDao;
@@ -248,14 +258,37 @@ public class MainController {
         return "inventoryReport";
     }
 
+    @PostMapping("addMake")
+    public String addMake(HttpServletRequest request) {
+        newMakeName = request.getParameter("inputMakeName");
+        Make make = new Make();
+        make.setName(newMakeName);
+        make.setDate(LocalDate.now());
+        make.setEmail("admin@admin");
+        makeDao.addMake(make);
+        
+        return "redirect:/make";
+    }
+    
     @GetMapping("make")
-    public String getMake() {
+    public String getMake(Model model) {
+               
+        List<Make> makes = makeDao.getAllMakes();
+        model.addAttribute("makes", makes);
         return "make";
     }
-
-    @GetMapping("model")
-    public String getModel() {
+    
+      @GetMapping("model")
+    public String getModel(Model model) {
+        List<CarModel> carModels = modelDao.getAllModels();
+        model.addAttribute("carModels", carModels);
         return "model";
+    }
+
+
+    @GetMapping("addmodel")
+    public String addModel() {
+        return "redirect:/model";
     }
 
     @GetMapping("report")

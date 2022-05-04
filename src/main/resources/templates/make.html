@@ -22,7 +22,6 @@
 
     <title>Guild Cars!</title>
   </head>
-  <body>
     <!-- Main Body of Page -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -76,31 +75,40 @@
       <br />
       <form class="form-inline" action="" method="">
         <div class="form-group">
-          <label for="searchLabel">New Make </label>
+          <label for="makeLabel">New Make </label>
           <input
             type="text"
             class="form-control"
-            id="inputSearch"
+            id="inputMake"
             placeholder="Add new Make"
-            name="inputSearch"
+            name="inputMakeName"
           />
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
-    </div>
+    </div> 
+    
     <br />
     <div class="container">
+      <div class="text-left"><h2>Make List</h2></div>
+      <br />
       <div id="makeTableDiv">
         <table id="makeTable" class="table table-hover">
           <thead>
             <tr>
-              <th width="15%">make</th>
+              <th width="15%">Make</th>
               <th width="30%">Date Added</th>
               <th width="40%">User</th>
             </tr>
           </thead>
           <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="makeRows"></tbody>
+          <tbody id="makeRows">
+            <tr th:each="make : ${makes}">
+              <td th:text="${make.name}">make name</td>
+              <td th:text="${make.date}">make date</td>
+              <td th:text="${make.email}">make user</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

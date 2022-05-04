@@ -75,10 +75,10 @@
 
     <div class="container">
       <div class="text-left"><h2>Sales</h2></div>
-      <form class="form-inline" action="" method="">
+      <form class="form-inline">
         <div class="row">
           <div class="form-group">
-            <label for="searchLabel">Quick Search: </label>
+            <label for="inputSearch">Quick Search: </label>
             <input
               type="text"
               class="form-control"
@@ -110,9 +110,7 @@
             </select>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary" onclick="loadCars()">
-              Search
-            </button>
+            <button type="submit" class="btn btn-primary">Search</button>
           </div>
         </div>
       </form>
@@ -125,14 +123,39 @@
         <table id="carTable" class="table table-hover">
           <thead>
             <tr>
-              <th width="40%"></th>
-              <th width="20%"></th>
-              <th width="20%"></th>
-              <th width="20%"></th>
+              <th width="10%">Picture</th>
+              <th width="10%">Tag</th>
+              <th width="5%">Body Style</th>
+              <th width="5%">Trans</th>
+              <th width="5%">Color</th>
+              <th width="5%">Interior</th>
+              <th width="5%">Mileage</th>
+              <th width="5%">VIN</th>
+              <th width="10%">Sales Price</th>
+              <th width="5%">MSRP</th>
+              <!-- <th width="5%"></th> -->
             </tr>
+
+            <!-- we will add data rows dynamically to the tbody -->
           </thead>
-          <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="carRows"></tbody>
+
+          <tbody id="carRows">
+            <tr th:each="unsoldCar : ${unsoldCars}">
+              <td th:src="@{/${unsoldCar.picture}}">car picture</td>
+              <td th:text="${unsoldCar.tag}">car tag name</td>
+              <td th:text="${unsoldCar.bodyStyle}">car bodyStyle</td>
+              <td th:text="${unsoldCar.transmission}">car transmission</td>
+              <td th:text="${unsoldCar.color}">car color</td>
+              <td th:text="${unsoldCar.interior}">car interior</td>
+              <td th:value="${unsoldCar.mileage}">car mileage</td>
+              <td th:text="${unsoldCar.vin}">car vin</td>
+              <td th:value="${unsoldCar.salesPrice}">car salesPrice</td>
+              <td th:text="${unsoldCar.msrp}">car msrp</td>
+              <!-- <a class="nav-link" href="#"
+                ><button class="button button-primary">Buy</button></a
+              > -->
+            </tr>
+          </tbody>
         </table>
       </div>
       <!-- <div class="row border-dark">
