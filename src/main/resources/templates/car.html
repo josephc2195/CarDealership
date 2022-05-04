@@ -164,7 +164,7 @@
                             <td th:text="${car.vin}">car vin</td>
                             <td th:value="${car.salesPrice}">car salesPrice</td>
                             <td th:text="${car.msrp}">car msrp</td>
-                            <td><a href="#" th:href="@{/guildcars.com/editCar(id=${car.id})}">Edit</a></td>
+                            <td><a href="editCar" th:href="@{/guildcars.com/editCar(id=${car.id})}">Edit</a></td>
                         </tr>
                     </tbody>
                 </table>

@@ -215,9 +215,6 @@ public class MainController {
 
     @GetMapping("editCar")
     public String editCar(HttpServletRequest request, Model model){
-        int id = Integer.parseInt(request.getParameter("id"));
-        Car car = carDao.getCarById(id);
-        model.addAttribute("car", car);
         return "editCar";
     }
     @PostMapping("editCar")
