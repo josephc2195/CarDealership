@@ -38,6 +38,23 @@ select CONCAT(car.year, ' ', make.name, ' ', model.name) tag, bodyStyle, transmi
     where car.available = 1
     limit 20;     
     
+    create view aggregateSoldCar as
+select CONCAT(person.firstName, ' ', person.lastName) as `User`, sum(sales.purchasePrice) as TotalSales, count(car.id) as TotalVehicles
+	from car 
+    join user on car.id = `user`.carId
+    join person on person.id = user.personId
+    join sales on sales.carId = `user`.carId
+    group by `user`.id
+    limit 20;   
+    
 select * from aggregateNewCar;
 
 select * from aggregateUsedCar;    
+
+select * from user;
+
+UPDATE `user` 
+SET 
+    carId = 1
+WHERE
+    `user`.id = 2;

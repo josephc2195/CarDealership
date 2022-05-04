@@ -60,17 +60,23 @@ create table person (
 		primary key(id)
 );
 
+drop table if exists user;
+
 create table `user` (
 	id int not null AUTO_INCREMENT,
     `role` varchar(20) not null,
     username varchar(30) not null,
     `password` varchar(255) not null,
     personId int not null,
+    carId int,
     constraint pk_user
 		primary key(id),
     constraint fk_userperson
 		foreign key(personId)
-        references person(id)    
+        references person(id),
+    constraint fk_usercar
+		foreign key(carId)
+        references car(id)    
 );
 
 create table customer (
@@ -251,7 +257,46 @@ values
 (10, 'Special #10', 'Unbeleavably amazing special'),
 (11, 'Special #11', 'Unbeleavably amazing special');
 
+-- Two views for aggregate queries for cars 
 
+create view aggregateNewCar as
+select year, make.name as make, model.name as model, count(car.id) as count, sum(car.msrp) as stockValue
+	from car 
+    join model on model.id = car.modelId
+    join make on make.id = model.makeId
+    where car.type = "new"
+    group by year, make, model
+    limit 20;
+    
+create view aggregateUsedCar as
+select year, make.name as make, model.name as model, count(car.id) as count, sum(car.msrp) as stockValue
+	from car 
+    join model on model.id = car.modelId
+    join make on make.id = model.makeId
+    where car.type = "used"
+    group by year, make, model
+    limit 20;   
+    
+create view unSoldCar as
+select CONCAT(car.year, ' ', make.name, ' ', model.name) tag, bodyStyle, transmission, color, interior, mileage, vin, car.salesPrice as salesPrice, msrp
+	from car 
+    join model on model.id = car.modelId
+    join make on make.id = model.makeId
+    where car.available = 1
+    limit 20;         
+    
+create view aggregateSoldCar as
+select CONCAT(person.firstName, ' ', person.lastName) as `User`, sum(sales.purchasePrice) as TotalSales, count(car.id) as TotalVehicles
+	from car 
+    join user on car.id = `user`.carId
+    join person on person.id = user.personId
+    join sales on sales.carId = `user`.carId
+    group by `user`.id
+    limit 20;       
 
-
+UPDATE `user` 
+SET 
+    carId = 2
+WHERE
+    `user`.id = 3;
 

@@ -60,17 +60,23 @@ create table person (
 		primary key(id)
 );
 
+drop table if exists user;
+
 create table `user` (
 	id int not null AUTO_INCREMENT,
     `role` varchar(20) not null,
     username varchar(30) not null,
     `password` varchar(255) not null,
     personId int not null,
+    carId int,
     constraint pk_user
 		primary key(id),
     constraint fk_userperson
 		foreign key(personId)
-        references person(id)    
+        references person(id),
+    constraint fk_usercar
+		foreign key(carId)
+        references car(id)    
 );
 
 create table customer (
@@ -271,5 +277,9 @@ select year, make.name as make, model.name as model, count(car.id) as count, sum
     group by year, make, model
     limit 20;    
 
-
+UPDATE `user` 
+SET 
+    carId = 2
+WHERE
+    `user`.id = 3;
 

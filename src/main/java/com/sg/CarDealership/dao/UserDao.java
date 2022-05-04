@@ -1,5 +1,6 @@
 package com.sg.CarDealership.dao;
 
+import com.sg.CarDealership.dto.AggregateSoldCar;
 import java.util.List;
 import com.sg.CarDealership.dto.User;
 
@@ -13,5 +14,7 @@ public interface UserDao {
     public List<User> getAllUsers();
     public boolean updateUser(User user);
     public User getUserById(int id);
+    public int userSellCar(User user, int carId);
+    public List<AggregateSoldCar> getSoldCars();
 
 }

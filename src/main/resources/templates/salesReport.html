@@ -130,7 +130,13 @@
             </tr>
           </thead>
           <!-- we will add data rows dynamically to the tbody -->
-          <tbody id="salesReportRows"></tbody>
+          <tbody id="salesReportRows">
+            <tr th:each="soldCar : ${soldCars}">
+              <td th:text="${soldCar.user}">User</td>
+              <td th:text="${soldCar.totalSales}">Total Sales</td>
+              <td th:text="${soldCar.totalVehicles}">Total Vehicles</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

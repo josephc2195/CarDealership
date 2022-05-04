@@ -1,6 +1,7 @@
 package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dao.PersonDaoDB.PersonMapper;
+import com.sg.CarDealership.dto.AggregateSoldCar;
 import com.sg.CarDealership.dto.Person;
 import com.sg.CarDealership.dto.User;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 /**
  * @author Weston Gavin, Joseph Chica && Ronald Gedeon; 
@@ -77,6 +79,28 @@ public class UserDaoDB implements UserDao{
         return jdbc.queryForObject(SELECT_PERSON_FOR_USER, new PersonMapper(), user.getId());
     }
 
+    @Override
+    public int userSellCar(User user, int carId) {
+        final String SELL_CAR = "UPDATE user SET carId = ? " 
+                + "WHERE id = ?";
+        
+        return jdbc.update(SELL_CAR, 
+                carId,  
+                user.getId());
+    }
+
+    @Override
+    public List<AggregateSoldCar> getSoldCars() {
+        final String SELECT_SOLD_CARS = "SELECT * from aggregateSoldCar";
+        // car id not exist
+        try {
+            List<AggregateSoldCar> sodlCars = jdbc.query(SELECT_SOLD_CARS, new AggregateSoldCarMapper());
+            return sodlCars;
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+
     // Specific field to User class
     public static final class UserMapper implements RowMapper<User> {
 
@@ -89,6 +113,21 @@ public class UserDaoDB implements UserDao{
             user.setPassword(rs.getString("password"));
             
             return user;
+        }
+    }
+    
+    // Specific field to AggregateSoldCar class
+    public static final class AggregateSoldCarMapper implements RowMapper<AggregateSoldCar> {
+
+        @Override
+        public AggregateSoldCar mapRow(ResultSet rs, int index) throws SQLException {
+            AggregateSoldCar aggregateSoldCar = new AggregateSoldCar();
+
+            aggregateSoldCar.setUser(rs.getString("user"));
+            aggregateSoldCar.setTotalSales(rs.getInt("totalSales"));
+            aggregateSoldCar.setTotalVehicles(rs.getInt("totalVehicles"));
+
+            return aggregateSoldCar;
         }
     }
 }

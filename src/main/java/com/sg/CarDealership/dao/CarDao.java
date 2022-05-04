@@ -2,7 +2,7 @@ package com.sg.CarDealership.dao;
 
 import com.sg.CarDealership.dto.AggregateCar;
 import com.sg.CarDealership.dto.Car;
-import com.sg.CarDealership.dto.UnsoldCar;
+import com.sg.CarDealership.dto.AggregateUnsoldCar;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ public interface CarDao {
     public List<Car> getNewCars();
     public List<AggregateCar> getAggregateNewCars();
     public List<AggregateCar> getAggregateUsedCars();
-    public List<UnsoldCar> getUnsoldCars();
+    public List<AggregateUnsoldCar> getUnsoldCars();
     public Car addCar(int modelId, Car car);
     public boolean updateCar(Car car);
 }

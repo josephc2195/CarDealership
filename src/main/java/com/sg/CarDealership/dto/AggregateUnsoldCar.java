@@ -5,7 +5,7 @@ package com.sg.CarDealership.dto;
  * gitRepo: https://github.com/gedegithub/C223-JavaDev.git 
  * Design of a class ... on month day, year
  */
-public class UnsoldCar {
+public class AggregateUnsoldCar {
     private String tag, bodyStyle, transmission, color, interior, mileage, vin;
     private double salesPrice, msrp;
 

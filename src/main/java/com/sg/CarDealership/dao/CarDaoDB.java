@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.sg.CarDealership.dao.ModelDaoDB.ModelMapper;
 import com.sg.CarDealership.dto.AggregateCar;
 import com.sg.CarDealership.dto.CarModel;
-import com.sg.CarDealership.dto.UnsoldCar;
+import com.sg.CarDealership.dto.AggregateUnsoldCar;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -199,11 +199,11 @@ public class CarDaoDB implements CarDao {
     }
 
     @Override
-    public List<UnsoldCar> getUnsoldCars() {
+    public List<AggregateUnsoldCar> getUnsoldCars() {
         final String SELECT_UNSOLD_CARS = "SELECT * from unSoldCar";
         // car id not exist
         try {
-            List<UnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());
+            List<AggregateUnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());
             return unsodlCars;
         } catch (EmptyResultDataAccessException ex) {
             return null;
@@ -253,11 +253,11 @@ public class CarDaoDB implements CarDao {
     }
     
     // Specific field to AggregateCar class
-    public static final class UnsoldCarMapper implements RowMapper<UnsoldCar> {
+    public static final class UnsoldCarMapper implements RowMapper<AggregateUnsoldCar> {
 
         @Override
-        public UnsoldCar mapRow(ResultSet rs, int index) throws SQLException {
-            UnsoldCar unsoldCar = new UnsoldCar();
+        public AggregateUnsoldCar mapRow(ResultSet rs, int index) throws SQLException {
+            AggregateUnsoldCar unsoldCar = new AggregateUnsoldCar();
 
             unsoldCar.setTag(rs.getString("tag"));
             unsoldCar.setBodyStyle(rs.getString("bodyStyle"));

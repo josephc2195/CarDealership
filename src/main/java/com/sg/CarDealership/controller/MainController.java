@@ -7,12 +7,13 @@ import com.sg.CarDealership.dao.PersonDao;
 import com.sg.CarDealership.dao.SpecialsDao;
 import com.sg.CarDealership.dao.UserDao;
 import com.sg.CarDealership.dto.AggregateCar;
+import com.sg.CarDealership.dto.AggregateSoldCar;
 import com.sg.CarDealership.dto.Car;
 import com.sg.CarDealership.dto.CarModel;
 import com.sg.CarDealership.dto.Make;
 import com.sg.CarDealership.dto.Person;
 import com.sg.CarDealership.dto.Specials;
-import com.sg.CarDealership.dto.UnsoldCar;
+import com.sg.CarDealership.dto.AggregateUnsoldCar;
 import com.sg.CarDealership.dto.User;
 import java.util.List;
 import java.time.LocalDate;
@@ -102,7 +103,7 @@ public class MainController {
 
     @GetMapping("salesIndex")
     public String getSalesIndex(Model model) {
-        List<UnsoldCar> unsoldCars = carDao.getUnsoldCars();
+        List<AggregateUnsoldCar> unsoldCars = carDao.getUnsoldCars();
         model.addAttribute("unsoldCars", unsoldCars);
         return "salesIndex";
     }
@@ -302,7 +303,9 @@ public class MainController {
     }
 
     @GetMapping("salesReport")
-    public String getSalesReport() {
+    public String getSalesReport(Model model) {
+        List<AggregateSoldCar> soldCars = userDao.getSoldCars();
+        model.addAttribute("soldCars", soldCars);
         return "salesReport";
     }
 
