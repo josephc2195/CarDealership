@@ -1,6 +1,6 @@
 use carDealership;
 
-select * from car;
+select * from car limit 20;
 select * from customer;
 select * from make;
 select * from model;
