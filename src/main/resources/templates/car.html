@@ -132,6 +132,44 @@
     <div>
         <div class="row m-4" id="searchResults">
             <h2>Search results:</h2>
+
+            <div id="carTableDiv">
+                <table id="carTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10%">Picture</th>
+                            <th width="15%">Tag</th>
+                            <th width="5%">Body Style</th>
+                            <th width="5%">Trans</th>
+                            <th width="5%">Color</th>
+                            <th width="5%">Interior</th>
+                            <th width="5%">Mileage</th>
+                            <th width="5%">VIN</th>
+                            <th width="10%">Sales Price</th>
+                            <th width="5%">MSRP</th>
+                            <th width="5%">Action</th>
+                            <th width="5%">Edit</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="carContentRows">
+                        <tr th:each="car : ${cars}">
+                            <td th:src="@{/${car.picture}}">car picture</td>
+                            <td th:text="${car.tag}">car tag name</td>
+                            <td th:text="${car.bodyStyle}">car bodyStyle</td>
+                            <td th:text="${car.transmission}">car transmission</td>
+                            <td th:text="${car.color}">car color</td>
+                            <td th:text="${car.interior}">car interior</td>
+                            <td th:value="${car.mileage}">car mileage</td>
+                            <td th:text="${car.vin}">car vin</td>
+                            <td th:value="${car.salesPrice}">car salesPrice</td>
+                            <td th:text="${car.msrp}">car msrp</td>
+                            <td><a href="#" th:href="@{/guildcars.com/editCar(id=${car.id})}">Edit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
     
@@ -143,5 +181,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+    <script src="../scripts/jquery-3.0.0.min.js"></script>
+    <script src="../scripts/cars.js"></script>
+</body>
 </html>

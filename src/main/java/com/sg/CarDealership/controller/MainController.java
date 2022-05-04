@@ -141,13 +141,13 @@ public class MainController {
         car.setVin(vin);
         car.setMsrp(Double.valueOf(msrp));
         car.setSalesPrice(Double.valueOf(sales));
-        if(!makeDao.getAllMakes().contains(make)) {
+        if(!makeDao.getAllMakes().contains(makeDao.getMakeByName(make))) {
             Make addedMake = new Make();
             addedMake.setName(make);
             addedMake.setDate(LocalDate.now());
             addedMake.setEmail("chicaj@gmail.com");
             makeDao.addMake(addedMake);
-            if(!modelDao.getAllModels().contains(model)) {
+            if(!modelDao.getAllModels().contains(modelDao.getModelByName(model))) {
                 CarModel addedModel = new CarModel();
                 addedModel.setDate(LocalDate.now());
                 addedModel.setEmail("chicaj@gmail.com");
@@ -156,7 +156,7 @@ public class MainController {
                 modelDao.addModel(addedMake.getId(), addedModel);
             }
         } 
-        if(!modelDao.getAllModels().contains(model)) {
+        if(!modelDao.getAllModels().contains(modelDao.getModelByName(model))) {
                 CarModel addedModel = new CarModel();
                 addedModel.setDate(LocalDate.now());
                 addedModel.setEmail("chicaj@gmail.com");
@@ -202,7 +202,9 @@ public class MainController {
     }
 
     @GetMapping("car")
-    public String showCar() {
+    public String showCar(Model model) {
+//        List<Car> cars = carDao.getAllCars();
+//        model.addAttribute("cars", cars);
         return "car";
     }
 
@@ -212,41 +214,30 @@ public class MainController {
     }
 
     @GetMapping("editCar")
-    public String editCar(){
+    public String editCar(HttpServletRequest request, Model model){
+        int id = Integer.parseInt(request.getParameter("id"));
+        Car car = carDao.getCarById(id);
+        model.addAttribute("car", car);
         return "editCar";
     }
     @PostMapping("editCar")
     public String editCar(HttpServletRequest req){
-        String make = req.getParameter("make");
-        String model = req.getParameter("model");
-        String type = req.getParameter("type");
-        String body = req.getParameter("bodyStyle");
-        String year = req.getParameter("year");
-        String trans = req.getParameter("tranmission");
-        String color = req.getParameter("color");
-        String interior = req.getParameter("interior");
-        String mileage = req.getParameter("mileage");
-        String vin = req.getParameter("vin");
-        String msrp = req.getParameter("msrp");
-        String sales = req.getParameter("salesPrice");
-        String description = req.getParameter("description");
-        String picture = req.getParameter("picture");
-        
-        Car car = new Car();
-        car.setBodyStyle(body);
-        car.setColor(color);
-        car.setDescription(description);
-        car.setMileage(Integer.valueOf(mileage));
-        car.setInterior(interior);
-        car.setType(type);
-        car.setYear(Integer.valueOf(year));
-        car.setTransmission(trans);
-        car.setVin(vin);
-        car.setMsrp(Double.valueOf(msrp));
-        car.setSalesPrice(Double.valueOf(sales));
+        int id = Integer.valueOf(req.getParameter("id"));
+        Car car = carDao.getCarById(id);
+        car.setBodyStyle(req.getParameter("bodyStyle"));
+        car.setColor(req.getParameter("color"));
+        car.setDescription(req.getParameter("description"));
+        car.setMileage(Integer.valueOf(req.getParameter("mileage")));
+        car.setInterior(req.getParameter("interior"));
+        car.setType(req.getParameter("type"));
+        car.setYear(Integer.valueOf(req.getParameter("year")));
+        car.setTransmission(req.getParameter("transmission"));
+        car.setVin(req.getParameter("vin"));
+        car.setMsrp(Double.valueOf(req.getParameter("msrp")));
+        car.setSalesPrice(Double.valueOf(req.getParameter("sales")));
         
         carDao.updateCar(car);
-        return "editCar";
+        return "redirect:/guildcars.com/car";
     }
     @GetMapping("editUser")
     public String editUser(HttpServletRequest request, Model model){
