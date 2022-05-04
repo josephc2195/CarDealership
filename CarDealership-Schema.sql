@@ -54,7 +54,7 @@ create table person (
     firstName varchar(30) not null,
     lastName varchar(50) not null,
     email varchar(50),
-	phone varchar(20) not null,
+	phone varchar(20),
     address varchar(100),
     constraint pk_person
 		primary key(id)

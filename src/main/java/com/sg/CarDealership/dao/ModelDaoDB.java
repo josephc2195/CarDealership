@@ -55,6 +55,20 @@ public class ModelDaoDB implements ModelDao{
             return null;
         }
     }
+    
+    @Override
+    public CarModel getModelByName(String modelName) {
+        final String SELECT_MODELID = "SELECT * FROM model WHERE name = ?";
+
+        // model id not exist
+        try {
+            CarModel model = jdbc.queryForObject(SELECT_MODELID, new ModelMapper(), modelName);
+            model.setMake(getMakeForModel(model)); // populate make field in model class
+            return model;
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
 
     @Override
     public List<CarModel> getAllModels() {

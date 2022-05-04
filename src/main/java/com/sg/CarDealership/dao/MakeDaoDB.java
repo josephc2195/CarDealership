@@ -34,6 +34,18 @@ public class MakeDaoDB implements MakeDao{
     }
     
     @Override
+    public Make getMakeByName(String makeName) {
+        final String SELECT_MAKEID = "SELECT * FROM make WHERE name = ?";
+
+        // make id does not exist
+        try {
+            return jdbc.queryForObject(SELECT_MAKEID, new MakeMapper(), makeName);
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+    
+    @Override
     public List<Make> getAllMakes() {
         final String SELECT_ALL_MAKES = "SELECT * FROM make LIMIT 20";
         return jdbc.query(SELECT_ALL_MAKES, new MakeMapper());
