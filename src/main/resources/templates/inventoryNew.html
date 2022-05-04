@@ -151,10 +151,61 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="row m-4" id="searchResults">
-        <h2>Search results:</h2>
+    
+    <div class="container" id="searchContainer">
+      <div class="text-left"><h2>Search Results</h2></div>
+
+      <div id="carTableDiv">
+        <table id="carTable" class="table table-hover">
+          <thead>
+            <tr>
+              <th width="10%">Picture</th>
+              <th width="10%">Tag</th>
+              <th width="5%">Body Style</th>
+              <th width="5%">Trans</th>
+              <th width="5%">Color</th>
+              <th width="5%">Interior</th>
+              <th width="5%">Mileage</th>
+              <th width="5%">VIN</th>
+              <th width="10%">Sales Price</th>
+              <th width="5%">MSRP</th>
+              <th width="5%">Action</th>
+            </tr>
+
+            <!-- we will add data rows dynamically to the tbody -->
+          </thead>
+
+          <tbody id="carContentRows">
+            <tr th:each="unsoldCar : ${unsoldCars}">
+              <td th:src="@{/${unsoldCar.picture}}">car picture</td>
+              <td th:text="${unsoldCar.tag}">car tag name</td>
+              <td th:text="${unsoldCar.bodyStyle}">car bodyStyle</td>
+              <td th:text="${unsoldCar.transmission}">car transmission</td>
+              <td th:text="${unsoldCar.color}">car color</td>
+              <td th:text="${unsoldCar.interior}">car interior</td>
+              <td th:value="${unsoldCar.mileage}">car mileage</td>
+              <td th:text="${unsoldCar.vin}">car vin</td>
+              <td th:value="${unsoldCar.salesPrice}">car salesPrice</td>
+              <td th:text="${unsoldCar.msrp}">car msrp</td>
+              <!-- <a class="nav-link" href="#"
+                ><button class="button button-primary">Buy</button></a
+              > -->
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <!-- <div class="row border-dark">
+        <div class="col-3">
+          <p id="carName"></p>
+          <div id="carImage"></div>
+        </div>
+        <div class="col-3">
+          <p id="carBody"></p>
+          <p id="carTrans"></p>
+        </div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+      </div> -->
     </div>
 
     <!-- End main body -->
@@ -176,6 +227,6 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
-    <script src="../scripts/guildcars.js"></script>
+    <!<!-- <script src="/scripts/newInventory.js"></script> -->
   </body>
 </html>

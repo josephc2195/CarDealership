@@ -14,11 +14,13 @@ public interface CarDao {
     public Car getCarById(int carId);
     public List<Car> getAllCars();
     public List<Car> getFeaturedCars();
-    public List<Car> getUsedCars();
-    public List<Car> getNewCars();
+    //public List<Car> getUsedCars();
+    //public List<Car> getNewCars();
     public List<AggregateCar> getAggregateNewCars();
     public List<AggregateCar> getAggregateUsedCars();
     public List<AggregateUnsoldCar> getUnsoldCars();
     public Car addCar(int modelId, Car car);
     public boolean updateCar(Car car);
+    public List<AggregateUnsoldCar> getNewCars();
+    public List<AggregateUnsoldCar> getUsedCars();
 }

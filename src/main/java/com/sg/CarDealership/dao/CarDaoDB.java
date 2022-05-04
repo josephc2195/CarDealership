@@ -71,7 +71,7 @@ public class CarDaoDB implements CarDao {
         }
         return cars;
     }
-
+/*
     @Override
     public List<Car> getNewCars() {
         final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'new' LIMIT 20";
@@ -99,7 +99,7 @@ public class CarDaoDB implements CarDao {
         }
         return cars;
     }
-
+*/
     // fetch and populate the Make field in Car class
     public CarModel getModelForCar(Car car) {
         final String SELECT_MODEL_FOR_CAR = "SELECT mo.* FROM model mo "
@@ -206,6 +206,28 @@ public class CarDaoDB implements CarDao {
             List<AggregateUnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());
             return unsodlCars;
         } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+    @Override
+    public List<AggregateUnsoldCar> getNewCars() {
+        final String SELECT_UNSOLD_CARS = "SELECT * from unSoldCar LIMIT 20";
+        // car id not exist
+        try {
+            List<AggregateUnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());
+            return unsodlCars;
+        } catch (EmptyResultDataAccessException ex) {
+            return null;
+        }
+    }
+    @Override
+    public List<AggregateUnsoldCar> getUsedCars() {
+        final String SELECT_UNSOLD_CARS = "SELECT * from unSoldCar LIMIT 20";
+        // car id not exist
+        try {
+            List<AggregateUnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());
+            return unsodlCars;
+        } catch (EmptyResultDataAccessException ex) { 
             return null;
         }
     }

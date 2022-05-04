@@ -20,7 +20,7 @@ function loadCars() {
     success: function (carArray) {
       $.each(carArray, function (index, car) {
         const tag = car.year + ' ' + car.model.make.name + ' ' + car.model.name;
-
+        alert("test");
         const picture = car.picture;
         const bodyStyle = car.bodyStyle;
         const trans = car.transmission;
@@ -65,7 +65,7 @@ function loadCars() {
       //     .attr({ class: 'list-group-item list-group-item-danger' })
       //     .text('Error calling web service. Please try again later.')
       // );
-    },
+    }
   });
 }
 

@@ -61,15 +61,15 @@ public class MainController {
 
     @GetMapping("inventoryNew")
     public String getNewInventory(Model model) {
-        List<Car> cars = carDao.getNewCars();
-        model.addAttribute("cars", cars);
+        List<AggregateUnsoldCar> unsoldCars = carDao.getNewCars();
+        model.addAttribute("unsoldCars", unsoldCars);
         return "inventoryNew";
     }
 
     @GetMapping("inventoryUsed")
     public String getUsedInventory(Model model) {
-        List<Car> cars = carDao.getUsedCars();
-        model.addAttribute("cars", cars);
+        List<AggregateUnsoldCar> unsoldCars = carDao.getUsedCars();
+        model.addAttribute("unsoldCars", unsoldCars);
         return "inventoryUsed";
     }
 
@@ -89,8 +89,8 @@ public class MainController {
 
     @GetMapping("contact")
     public String setContact(Model model) {
-        List<Car> cars = carDao.getUsedCars();
-        model.addAttribute("cars", cars);
+        //List<Car> cars = carDao.getUsedCars();
+        //model.addAttribute("cars", cars);
         return "contact";
     }
 
