@@ -141,8 +141,34 @@ public class MainController {
         car.setVin(vin);
         car.setMsrp(Double.valueOf(msrp));
         car.setSalesPrice(Double.valueOf(sales));
-        //carDao.addCar(car);
-        return "addCar";
+        if(!makeDao.getAllMakes().contains(make)) {
+            Make addedMake = new Make();
+            addedMake.setName(make);
+            addedMake.setDate(LocalDate.now());
+            addedMake.setEmail("chicaj@gmail.com");
+            makeDao.addMake(addedMake);
+            if(!modelDao.getAllModels().contains(model)) {
+                CarModel addedModel = new CarModel();
+                addedModel.setDate(LocalDate.now());
+                addedModel.setEmail("chicaj@gmail.com");
+                addedModel.setMake(addedMake);
+                addedModel.setName(make);
+                modelDao.addModel(addedMake.getId(), addedModel);
+            }
+        } 
+        if(!modelDao.getAllModels().contains(model)) {
+                CarModel addedModel = new CarModel();
+                addedModel.setDate(LocalDate.now());
+                addedModel.setEmail("chicaj@gmail.com");
+                addedModel.setMake(makeDao.getMakeByName(make));
+                addedModel.setName(make);
+                modelDao.addModel(makeDao.getMakeByName(make).getId(), addedModel);
+                carDao.addCar(addedModel.getId(), car);
+        }
+        else{
+            carDao.addCar(modelDao.getModelByName(model).getId(), car);
+        }
+        return "redirect:/guildcars.com/cars";
     }
     
     @GetMapping("addUser") 
@@ -164,13 +190,15 @@ public class MainController {
         p1.setFirstName(firstName);
         p1.setLastName(lastName);
         User user = new User();
+        user.setUsername(lastName + firstName);
         if(confirmPw.equals(pw)) {
             user.setPassword(pw);
         }
+        personDao.addPerson(p1);
         user.setPerson(p1);
         user.setRole(role);
-        //userDao.addUser(user);
-        return "redirect:/guildcars.com/addUser";
+        userDao.addUser(p1.getId(), user);
+        return "redirect:/guildcars.com/users";
     }
 
     @GetMapping("car")
@@ -231,19 +259,16 @@ public class MainController {
     @PostMapping("editUser") 
     public String editUser(HttpServletRequest req) {
         int id = Integer.parseInt(req.getParameter("id")); 
-        Person p = personDao.getPersonById(id);
         User user = userDao.getUserById(id);
-        p.setEmail(req.getParameter("email"));
-        p.setFirstName(req.getParameter("firstName"));
-        p.setLastName(req.getParameter("lastName"));
+        user.getPerson().setEmail(req.getParameter("email"));
+        user.getPerson().setFirstName(req.getParameter("firstName"));
+        user.getPerson().setLastName(req.getParameter("lastName"));
         user.setRole(req.getParameter("role"));
         String pw = req.getParameter("password");
         String confirmedPw = req.getParameter("confirmedPw");
         if(pw.equals(confirmedPw)) {
             user.setPassword(pw);
         }
-        user.setPerson(p);
-        
         userDao.updateUser(user);
         return "redirect:/guildcars.com/users";
     }

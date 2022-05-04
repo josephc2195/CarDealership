@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface MakeDao {
      public Make addMake(Make make);
+     public Make getMakeByName(String makeName);
      public Make getMakeById(int makeId);
      public List<Make> getAllMakes();
 }

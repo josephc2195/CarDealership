@@ -66,7 +66,9 @@ public class UserDaoDB implements UserDao{
     public User getUserById(int id) {
         try {
             final String CMD = "SELECT * FROM user WHERE id = ?";
-            return jdbc.queryForObject(CMD, new UserMapper(), id);
+            User user = jdbc.queryForObject(CMD, new UserMapper(), id);
+            user.setPerson(getPersonForUser(user));
+            return user;
         } catch(DataAccessException ex) {
             return null;
         }

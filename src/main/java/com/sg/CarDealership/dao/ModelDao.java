@@ -10,6 +10,7 @@ import com.sg.CarDealership.dto.CarModel;
  */
 public interface ModelDao {
      public CarModel addModel(int makeId, CarModel model);
+     public CarModel getModelByName(String modelName);
      public List<CarModel> getAllModels();
      public CarModel getModelById(int modelId);
 }
