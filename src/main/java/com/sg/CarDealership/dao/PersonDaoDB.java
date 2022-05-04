@@ -35,7 +35,7 @@ public class PersonDaoDB implements PersonDao {
 
     @Override
     public List<Person> getAllPersons() {
-        final String SELECT_ALL_PERSONS = "SELECT * FROM person";
+        final String SELECT_ALL_PERSONS = "SELECT * FROM person LIMIT 20";
         List<Person> persons = jdbc.query(SELECT_ALL_PERSONS, new PersonMapper());
         
         return persons;

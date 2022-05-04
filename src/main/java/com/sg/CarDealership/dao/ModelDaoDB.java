@@ -58,7 +58,7 @@ public class ModelDaoDB implements ModelDao{
 
     @Override
     public List<CarModel> getAllModels() {
-        final String SELECT_ALL_MODELS = "SELECT * FROM model";
+        final String SELECT_ALL_MODELS = "SELECT * FROM model LIMIT 20";
         List<CarModel> models = jdbc.query(SELECT_ALL_MODELS, new ModelMapper());
         
         for(CarModel singleModel: models){

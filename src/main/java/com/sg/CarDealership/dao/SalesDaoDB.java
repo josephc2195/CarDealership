@@ -53,7 +53,7 @@ public class SalesDaoDB implements SalesDao {
 
     @Override
     public List<Sales> getAllSales() {
-        final String SELECT_ALL_SALES = "SELECT * FROM sales";
+        final String SELECT_ALL_SALES = "SELECT * FROM sales LIMIT 20";
         List<Sales> salesList = jdbc.query(SELECT_ALL_SALES, new SalesMapper());
         
         for(Sales sales: salesList){

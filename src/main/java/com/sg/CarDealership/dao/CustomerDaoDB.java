@@ -37,7 +37,7 @@ public class CustomerDaoDB implements CustomerDao {
 
     @Override
     public List<Customer> getAllCustomers() {
-        final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer";
+        final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer LIMIT 20";
         List<Customer> customers = jdbc.query(SELECT_ALL_CUSTOMERS, new CustomerMapper());
         
         for(Customer customer: customers){

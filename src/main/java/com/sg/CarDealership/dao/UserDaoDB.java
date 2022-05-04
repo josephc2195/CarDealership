@@ -52,7 +52,7 @@ public class UserDaoDB implements UserDao{
 
     @Override
     public List<User> getAllUsers() {
-        final String SELECT_ALL_USERS = "SELECT * FROM user";
+        final String SELECT_ALL_USERS = "SELECT * FROM user LIMIT 20";
         List<User> users = jdbc.query(SELECT_ALL_USERS, new UserMapper());
         
         for(User user: users){
@@ -91,7 +91,7 @@ public class UserDaoDB implements UserDao{
 
     @Override
     public List<AggregateSoldCar> getSoldCars() {
-        final String SELECT_SOLD_CARS = "SELECT * from aggregateSoldCar";
+        final String SELECT_SOLD_CARS = "SELECT * from aggregateSoldCar LIMIT 20";
         // car id not exist
         try {
             List<AggregateSoldCar> sodlCars = jdbc.query(SELECT_SOLD_CARS, new AggregateSoldCarMapper());

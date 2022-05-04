@@ -133,13 +133,13 @@
               <th width="5%">VIN</th>
               <th width="10%">Sales Price</th>
               <th width="5%">MSRP</th>
-              <!-- <th width="5%"></th> -->
+              <th width="5%">Action</th>
             </tr>
 
             <!-- we will add data rows dynamically to the tbody -->
           </thead>
 
-          <tbody id="carRows">
+          <tbody id="carContentRows">
             <tr th:each="unsoldCar : ${unsoldCars}">
               <td th:src="@{/${unsoldCar.picture}}">car picture</td>
               <td th:text="${unsoldCar.tag}">car tag name</td>
@@ -190,7 +190,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script> -->
-    <script src="../static/scripts/jquery-3.0.0.min.js"></script>
-    <script src="../static/scripts/salesIndex.js"></script>
+    <script src="../scripts/jquery-3.0.0.min.js"></script>
+    <script src="../scripts/salesIndex.js"></script>
   </body>
 </html>

@@ -37,7 +37,7 @@ public class SpecialsDaoDB implements SpecialsDao{
 
     @Override
     public List<Specials> getAllSpecials() {
-        final String SELECT_ALL_SPECIALS = "SELECT * FROM specials";
+        final String SELECT_ALL_SPECIALS = "SELECT * FROM specials LIMIT 20";
         List<Specials> specials = jdbc.query(SELECT_ALL_SPECIALS, new SpecialMapper());
         
         return specials;

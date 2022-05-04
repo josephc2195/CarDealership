@@ -46,7 +46,7 @@ public class CarDaoDB implements CarDao {
 
     @Override
     public List<Car> getAllCars() {
-        final String SELECT_ALL_CARS = "SELECT * FROM car";
+        final String SELECT_ALL_CARS = "SELECT * FROM car LIMIT 20";
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
 
         for (Car car : cars) {
@@ -88,7 +88,7 @@ public class CarDaoDB implements CarDao {
 
     @Override
     public List<Car> getUsedCars() {
-        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'used'";
+        final String SELECT_ALL_CARS = "SELECT * FROM car WHERE type = 'used' LIMIT 20";
         List<Car> cars = jdbc.query(SELECT_ALL_CARS, new CarMapper());
 
         for (Car car : cars) {
@@ -176,7 +176,7 @@ public class CarDaoDB implements CarDao {
 //                "WHERE car.type = ? " + 
 //                "GROUP BY year, make, model";
 
-        final String SELECT_AGGREGATE_NEW_CAR = "SELECT * from aggregateNewCar";
+        final String SELECT_AGGREGATE_NEW_CAR = "SELECT * from aggregateNewCar LIMIT 20";
         // car id not exist
         try {
             List<AggregateCar> aggregateNewCars = jdbc.query(SELECT_AGGREGATE_NEW_CAR, new AggregateCarMapper());
@@ -188,7 +188,7 @@ public class CarDaoDB implements CarDao {
     
     @Override
     public List<AggregateCar> getAggregateUsedCars() {
-        final String SELECT_AGGREGATE_USED_CAR = "SELECT * from aggregateUsedCar";
+        final String SELECT_AGGREGATE_USED_CAR = "SELECT * from aggregateUsedCar LIMIT 20";
         // car id not exist
         try {
             List<AggregateCar> aggregateUsedCars = jdbc.query(SELECT_AGGREGATE_USED_CAR, new AggregateCarMapper());
@@ -200,7 +200,7 @@ public class CarDaoDB implements CarDao {
 
     @Override
     public List<AggregateUnsoldCar> getUnsoldCars() {
-        final String SELECT_UNSOLD_CARS = "SELECT * from unSoldCar";
+        final String SELECT_UNSOLD_CARS = "SELECT * from unSoldCar LIMIT 20";
         // car id not exist
         try {
             List<AggregateUnsoldCar> unsodlCars = jdbc.query(SELECT_UNSOLD_CARS, new UnsoldCarMapper());

@@ -35,7 +35,7 @@ public class MakeDaoDB implements MakeDao{
     
     @Override
     public List<Make> getAllMakes() {
-        final String SELECT_ALL_MAKES = "SELECT * FROM make";
+        final String SELECT_ALL_MAKES = "SELECT * FROM make LIMIT 20";
         return jdbc.query(SELECT_ALL_MAKES, new MakeMapper());
     }
     
