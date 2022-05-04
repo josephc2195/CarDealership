@@ -13,6 +13,10 @@ import java.util.List;
 public interface CarDao {
     public Car getCarById(int carId);
     public List<Car> getAllCars();
+    public List<Car>getAllCarsByMSRP();
+    public List<Car>getAllCarsByPrice();
+    public List<Car>getAllCarsByYear();
+    public List<Car>getAllCarsMakeLike(String makeLike);
     public List<Car> getFeaturedCars();
     //public List<Car> getUsedCars();
     //public List<Car> getNewCars();

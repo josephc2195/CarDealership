@@ -37,6 +37,25 @@ public class CarController {
         return carDao.getAllCars();
     }
     
+    @GetMapping("/vehicles/msrp")
+    public List<Car> readAllCarsByMSRP() {
+        return carDao.getAllCarsByMSRP();
+    }
+    
+    @GetMapping("/vehicles/price")
+    public List<Car> readAllCarsByPrice() {
+        return carDao.getAllCarsByPrice();
+    }
+    
+    @GetMapping("/vehicles/year")
+    public List<Car> readAllCarsByYear() {
+        return carDao.getAllCarsByYear();
+    }
+    
+    @GetMapping("/vehicles/{makelike}")
+    public List<Car> readAllCarsMakeLike(@PathVariable String makeLike) {
+        return carDao.getAllCarsMakeLike(makeLike);
+    }
     
     @PostMapping("/admin/addvehicle/{modelId}")
     @ResponseStatus(HttpStatus.CREATED)

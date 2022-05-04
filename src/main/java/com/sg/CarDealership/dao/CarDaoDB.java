@@ -57,7 +57,67 @@ public class CarDaoDB implements CarDao {
         }
         return cars;
     }
+    
+    @Override
+    public List<Car> getAllCarsByMSRP() {
+        final String SELECT_ALL_CARS_MSRP = "SELECT * FROM car where available = 1 group by id order by msrp desc LIMIT 20";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS_MSRP, new CarMapper());
 
+        for (Car car : cars) {
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+
+        }
+        return cars;
+    }
+    
+    @Override
+    public List<Car> getAllCarsByPrice() {
+        final String SELECT_ALL_CARS_PRICE = "SELECT * FROM car where available = 1 group by id order by salesPrice desc LIMIT 20";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS_PRICE, new CarMapper());
+
+        for (Car car : cars) {
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+
+        }
+        return cars;
+    }
+    
+    @Override
+    public List<Car> getAllCarsByYear() {
+        final String SELECT_ALL_CARS_YEAR = "SELECT * FROM car where available = 1 group by id order by year desc LIMIT 20";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS_YEAR, new CarMapper());
+
+        for (Car car : cars) {
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+
+        }
+        return cars;
+    }
+
+      @Override
+    public List<Car> getAllCarsMakeLike(String nameLike) {
+        final String SELECT_ALL_CARS_YEAR = "SELECT year, type, bodyStyle, interior, color, mileage, transmission, vin, msrp, salesPrice, picture " +
+                "FROM car join model on car.modelId = model.id " +
+                "join make on model.makeId = make.id " + 
+                "where available = 1 and make.name LIKE '" + "?" + "%' " +
+                "LIMIT 20";
+        List<Car> cars = jdbc.query(SELECT_ALL_CARS_YEAR, new CarMapper(), nameLike);
+
+        for (Car car : cars) {
+            CarModel model = getModelForCar(car);
+            model.setMake(modelDao.getMakeForModel(model));
+            car.setModel(model); // populate model field in Car class
+
+        }
+        return cars;
+    }
+    
     @Override
     public List<Car> getFeaturedCars() {
         final String SELECT_ALL_CARS = "SELECT * FROM car WHERE featured = 1";

@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  //alert('page is loaded');
+  clearCarTable(); // clear car table
+  // $('#salesForm').on('submit', function () {
+  //   loadCars();
+  // });
 
   loadCars();
   //addContact();
@@ -8,7 +11,8 @@ $(document).ready(function () {
 
 // load function to GET data
 function loadCars() {
-  clearCarTable(); // clear car table
+  //$('#carTableDiv').show();
+  //clearCarTable(); // clear car table
   const carRows = $('#carContentRows');
 
   $.ajax({
@@ -16,7 +20,7 @@ function loadCars() {
     // headers: { 'Access-Control-Allow-Origin:': '*' },
     // crossDomain: true,
     // dataType: 'jsonp',
-    url: 'http://localhost:8080/guildcars.com/admin/vehicles',
+    url: 'http://localhost:8080/guildcars.com/vehicles/msrp',
     success: function (carArray) {
       $.each(carArray, function (index, car) {
         const tag = car.year + ' ' + car.model.make.name + ' ' + car.model.name;
@@ -38,7 +42,12 @@ function loadCars() {
           '<td>' +
           '<img src="/images/' +
           picture +
+<<<<<<< Updated upstream
           '.jpg" width="50" height="50" alt="car">' +
+=======
+          '.jpg"' +
+          'width="60" height="60" alt="car">' +
+>>>>>>> Stashed changes
           '</td>';
         row += '<td>' + tag + '</td>';
         row += '<td>' + bodyStyle + '</td>';

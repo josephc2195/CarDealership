@@ -75,7 +75,7 @@
 
     <div class="container">
       <div class="text-left"><h2>Sales</h2></div>
-      <form class="form-inline">
+      <form id="salesForm" role="form" class="form-inline">
         <div class="row">
           <div class="form-group">
             <label for="inputSearch">Quick Search: </label>
@@ -110,13 +110,15 @@
             </select>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button id="salesIndexSearch" type="submit" class="btn btn-primary">
+              Search
+            </button>
           </div>
         </div>
       </form>
     </div>
     <br />
-    <div class="container" id="searchContainer">
+    <div class="container" id="searchContainerDiv">
       <div class="text-left"><h2>Search Results</h2></div>
 
       <div id="carTableDiv">
